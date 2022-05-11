@@ -1,3 +1,5 @@
+// finding the max and min product valus in ma and mi and then before multiplication with -ve values swapping the ma and mi values.
+
 long long maxProduct(vector<int> arr, int n) {
 	    long long ma = arr[0], mi = arr[0], ans = arr[0];
 	    for(int i=1; i<n; i++){
