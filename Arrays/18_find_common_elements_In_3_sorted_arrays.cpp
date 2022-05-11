@@ -49,10 +49,10 @@ vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3){
                     last = A[i];
                     i++; j++; k++;
                 }
-                else if(min(A[i], B[j], C[k]) == A[i]){
+                else if(min({A[i], B[j], C[k]}) == A[i]){
                     i++;
                 }
-                else if(min(A[i], B[j], C[k]) == B[j])){
+                else if(min({A[i], B[j], C[k]}) == B[j])){
                     j++;
                 }
                 else{
