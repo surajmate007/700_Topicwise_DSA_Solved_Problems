@@ -1,3 +1,6 @@
+// first sort the intervals then consider one interval and compare upper adn lower limits and keep on merging. wjhen not possible to mmerge push that
+// updated interval inside the array and consider another new interval and do the same thing atlast push the last interval.
+
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
