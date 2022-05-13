@@ -13,7 +13,7 @@ long long int inversionCount(long long arr[], long long N){ // main function
 }
 
 
-// using merge sort appreoach
+// using merge sort appreoach. O(nlog(n)) complexity.
 
 long long merge(long long arr[], long long temp[], int left, int mid, int right){. // function to merge two sorted arrays and also count the inversions
         int i,j,k = 0;
