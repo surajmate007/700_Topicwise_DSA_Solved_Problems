@@ -44,7 +44,7 @@ vector<int> majorityElement(vector<int>& nums) {
                 cnt2 = 1;
             }
             else{
-                cnt1 --; cnt2--;
+                cnt1--; cnt2--;
             }
         }
         cnt1 = 0; cnt2 = 0;
