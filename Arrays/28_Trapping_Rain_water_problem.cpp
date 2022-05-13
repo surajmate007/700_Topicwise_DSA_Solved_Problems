@@ -9,7 +9,7 @@ long long trappingWater(int arr[], int n){
                     leftmax = arr[l];
                 }
                 else{
-                    ans += leftmax-arr[l];
+                    ans += (leftmax-arr[l]);
                 }
                 l++;
             }
@@ -19,7 +19,7 @@ long long trappingWater(int arr[], int n){
                     rightmax = arr[h];
                 }
                 else{
-                    ans += rightmax-arr[h];
+                    ans += (rightmax-arr[h]);
                 }
                 h--;
             }
