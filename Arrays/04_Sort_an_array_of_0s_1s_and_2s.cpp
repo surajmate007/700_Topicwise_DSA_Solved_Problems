@@ -5,19 +5,18 @@ void sort012(int a[], int n){
     while(q <= r){
         int temp;
         if(a[q] == 0){
-            temp = a[p];
-            a[p] = a[q];
-            a[q] = temp;
+            swap(a[p], a[q]);
             p++; q++;
         }
         else if (a[q] == 1){
             q++;
         }
         else{
-            temp = a[r];
-            a[r] = a[q];
-            a[q] = temp;
+            swap(a[r], a[q]);
             r--;
         }
     }
 }
+
+// we can also use another simple method which takes O(n) space where we count number of 0s, 1s and 2s and then run a loop and fill the array with 
+// corresponding number of elements.
