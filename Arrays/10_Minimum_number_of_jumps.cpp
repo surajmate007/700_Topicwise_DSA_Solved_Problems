@@ -1,4 +1,5 @@
-// finding maximum reach possible after every index and decrementing steps by 1
+// finding maximum reach possible after every index and decrementing steps by 1. when steps becomes completely equal to 0 then updating the
+// steps value from maxreach value.
 
 int minJumps(int arr[], int n){
         if(n==1){
