@@ -12,4 +12,25 @@ int find_median(vector<int> v){
 		       return (v[n]+v[n-1])/2;
 		   }
 		   
-		}
+}
+
+// original answer for this problem
+
+int find_median(vector<int> a, vector<int> b){
+		   int n = a.size(); int m = b.size();
+		   int i=0; int j=0; int k = n-1
+		   
+		   while(i<=k and j<m){
+		       if(a[i] < b[j]){
+		           i++;
+		       }
+		       else{
+		           swap(a[k], b[j]);
+		           j++; k--;
+		       }
+		   }
+		   
+		   sort(a.begin(), a.end());
+		   sort(b.begin(), b.end());
+		   return (a[n-1] + b[0])/2;
+}
