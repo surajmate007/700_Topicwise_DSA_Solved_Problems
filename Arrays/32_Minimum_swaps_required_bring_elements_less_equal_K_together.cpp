@@ -1,6 +1,7 @@
 // we wll first count total number of elements less than or equal to k in the given array.
 // we will use sliding window technique where we will keep track of bad values (values greater than k) inside the window.
 // then based on the number leaving the window and the number entering the window we will update the bad value.
+// at the end we will return the minimum bad value.
 
 
 int minSwap(int arr[], int n, int k) {
