@@ -18,7 +18,7 @@ int find_median_different_sizes(vector<int> a, vector<int> b){
 		   sort(b.begin(), b.end());
 		   
 		   int mid = (n+m)/2;
-		   if(mid%2 == 1){
+		   if((m+n)%2 == 1){
 		       if(n > mid){
 		           return a[mid];
 		       }
