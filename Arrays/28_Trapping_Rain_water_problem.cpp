@@ -27,3 +27,23 @@ long long trappingWater(int arr[], int n){
         
         return ans;
     }
+
+
+// modified simple code on samw logic:
+
+long long trappingWater(int arr[], int n){
+        int l=0; int h=n-1; int leftmax=0, rightmax=0; long long ans = 0;
+        while(l < h){
+            if(arr[l] <= arr[h]){
+                leftmax = max(leftmax, arr[l]);
+                ans += leftmax-arr[l];
+                l++;
+            }
+            else{
+                rightmax = max(rightmax, arr[h]);
+                ans += rightmax-arr[h];
+                h--;
+            }
+        }
+        return ans;
+    }
