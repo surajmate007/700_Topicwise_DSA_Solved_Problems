@@ -6,7 +6,7 @@ public:
         int low = 1; int high = nums.size()-1; int cnt;
         while(low <= high){
             int mid = low + (high-low)/2;
-            cnt = 0;
+            cnt = 0;      
             for(int n : nums){
                 if(n <= mid){
                     cnt++;
@@ -24,6 +24,7 @@ public:
 };
 
 // This is slow pointer fast pointer approach for this problem.
+
 
 class Solution {
 public:
