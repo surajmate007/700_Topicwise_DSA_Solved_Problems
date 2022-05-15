@@ -6,4 +6,3 @@ void rotate(int arr[], int n){
         last = ele;
     }
 }
-
