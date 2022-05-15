@@ -3,7 +3,6 @@
 // then based on the number leaving the window and the number entering the window we will update the bad value.
 // at the end we will return the minimum bad value.
 
-
 int minSwap(int arr[], int n, int k) {
         int bv = 0; int ans = INT_MAX; int count = 0;
         for(int i=0; i<n; i++){
