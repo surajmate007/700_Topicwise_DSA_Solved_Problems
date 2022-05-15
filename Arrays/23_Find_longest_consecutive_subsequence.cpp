@@ -18,6 +18,5 @@ int findLongestConseqSubseq(int arr[], int N){
                 ans = max(ans, count);
             }
         }
-        
         return ans;
-    }
+}
