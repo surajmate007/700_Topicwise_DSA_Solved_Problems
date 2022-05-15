@@ -29,7 +29,7 @@ long long trappingWater(int arr[], int n){
     }
 
 
-// modified simple code on samw logic:
+// modified simple code on same logic:
 
 long long trappingWater(int arr[], int n){
         int l=0; int h=n-1; int leftmax=0, rightmax=0; long long ans = 0;
