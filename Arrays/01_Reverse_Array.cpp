@@ -10,7 +10,7 @@ void reverse(vector<int>& vec){
         q--;
     }
 }
-
+ 
 int main() {
 	int T;
 	cin>>T;
