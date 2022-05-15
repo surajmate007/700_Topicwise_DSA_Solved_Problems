@@ -31,5 +31,6 @@ void rearrange(int arr[], int n) {
 	    }
 	}
 
+
 // if we dont need to maintain the order of elements in the array then we can simply sort the array first and then
 // starting one pointer from +ve and other from -ve elements and swaping the elements in proper order. 
