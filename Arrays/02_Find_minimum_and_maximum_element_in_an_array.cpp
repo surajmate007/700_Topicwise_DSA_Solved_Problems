@@ -10,7 +10,7 @@ pair<long long, long long> getMinMax(long long a[], int n) {
             max = a[i];
         }
     }
-    
+   
     pair<long long, long long> pr = {min, max};
     return pr;
 }
