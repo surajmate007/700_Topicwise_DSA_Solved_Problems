@@ -13,8 +13,7 @@ public:
 	            swap(arr1[k], arr2[j]);
 	            k--; j++;
 	        }
-	    }
-	   
+	   }
 	   sort(arr1, arr1+n);
 	   sort(arr2, arr2+m);
 	}
