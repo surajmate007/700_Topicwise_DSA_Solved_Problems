@@ -11,4 +11,4 @@ long long maxProduct(vector<int> arr, int n) {
 	        ans = max(ans, ma);
 	    }
 	    return ans;
-	}
+}
