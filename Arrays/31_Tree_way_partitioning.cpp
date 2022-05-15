@@ -14,7 +14,6 @@ void threeWayPartition(int arr[], int n, int a, int b){
     }
 }
 
-
 // using three pointers low, high and mid
 
 void threeWayPartition(vector<int>& array, int a, int b){
