@@ -16,7 +16,7 @@ void sort012(int a[], int n){
             r--;
         }
     }
-}
+} 
 
 // we can also use another simple method which takes O(n) space where we count number of 0s, 1s and 2s and then run a loop and fill the array with 
 // corresponding number of elements.
