@@ -26,6 +26,7 @@ vector<int> factorial(int N){
         return ans;
 }
 
+
 // when we start from 1 to N then we dont get TLE:
 
 vector<int> factorial(int N){
