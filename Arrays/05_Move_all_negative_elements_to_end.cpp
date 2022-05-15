@@ -22,6 +22,7 @@ void segregateElements(int a[],int n){
     }
 
 
+
 // if we dont need to maintain the order of elements then we can simply sort the array and use 2 pointer approach where one is staerting from +ve and 
 // other from -ve.
 
