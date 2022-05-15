@@ -1,9 +1,10 @@
-// using sliding window techmnique where the window is present in between i and j
+// using sliding window technique where the window is present in between i and j
+
 
 class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
-        int i=0, j=0, sum=0; // *Intializing variables*
+        int i=0, j=0, sum=0;                                // *Intializing variables*
         int ans = INT_MAX;
         while(j<nums.size() and i<=j){
             while(sum < target and j<nums.size()){
@@ -16,7 +17,7 @@ public:
                 i++;
             }
         }
-        if(ans==INT_MAX)return 0;
-        else return ans;
+        if(ans==INT_MAX ? 0 : ans;}
+        return ans;
     }
 };
