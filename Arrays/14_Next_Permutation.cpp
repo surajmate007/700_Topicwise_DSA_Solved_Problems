@@ -28,7 +28,7 @@ public:
         
         swap(nums[idx1], nums[idx2]);
         reverse(nums.begin() + idx1 + 1, nums.end());
-        
+ 
         return;
     }
 };
