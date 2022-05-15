@@ -13,7 +13,7 @@ class Solution {
             }
             ans = min(ans, ma-mi);
         }
-        
+
         return ans;
     }    
 };
