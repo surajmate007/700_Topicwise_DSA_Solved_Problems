@@ -1,6 +1,7 @@
 // using unordered map, we will store required difference to get the sum inside the map and then keep 
 // on searching for this value in our array.
  
+
 class Solution{   
 public:
     int getPairsCount(int arr[], int n, int k) {
