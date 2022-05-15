@@ -24,6 +24,5 @@ int minJumps(int arr[], int n){
                     step += maxR-i;
                 }
             }
-        }
-        
-    }
+        }       
+}
