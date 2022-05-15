@@ -20,8 +20,8 @@ public:
 
 // using logic that there can be no more than 2 n/k frequent elements from mathematics. 
 // hence we will first find 2 most frequent elements and then we will check whether these frequent elements are appearing more than n/k times:
-
 // called : MOORE VOTING ALGORITHM
+
 
 vector<int> majorityElement(vector<int>& nums) {
         vector<int> ans;
