@@ -52,7 +52,7 @@ long long merge(long long arr[], long long temp[], int left, int mid, int right)
         return inv;
     }
 
-    long long int inversionCount(long long arr[], long long N){ // main function
+    long long int inversionCount(long long arr[], long long N){                  // main function
         long long temp [N];
         return mergesort(arr, temp, 0, N-1);
     }
