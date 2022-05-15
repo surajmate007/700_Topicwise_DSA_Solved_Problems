@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 void reverse(vector<int>& vec){
     int p=0; int q=vec.size()-1;
     while(p <= q){
@@ -10,7 +11,8 @@ void reverse(vector<int>& vec){
         q--;
     }
 }
- 
+
+
 int main() {
 	int T;
 	cin>>T;
