@@ -1,5 +1,5 @@
 // we will create temp vector and add first element to that vector. then we will keep on checking whether the next element is in array is greater than last 
-// element in vector. if it is then puch it to vector else find its perfect position in vector using binary search and put that element on its perfect
+// element in vector. if it is then push it to vector else find its perfect position in vector using binary search and put that element on its perfect
 // position. TC = O(Nlog(n)) SC = O(n)
 
 
@@ -38,3 +38,28 @@ class Solution{
        return len;
     }
 };
+
+
+// Another solution which takes O(n2) TC:
+// the above solution does not give the exact LIS array elements hence this new approach can be used to find the total sum of LIS elements.
+
+int longestSubsequence(int n, int a[]){
+       int dp[n+1];
+       for(int i=0; i<n; i++){
+           dp[i] = 1;
+       }
+       for(int i=0; i<n; i++){
+           for(int j=0; j<i; j++){
+               if(a[i] > a[j] and dp[j]+1 > dp[i]){
+                   dp[i] = dp[j]+1;
+               } 
+           }
+       }
+       
+       int ans = 0;
+       for(int i=0; i<n; i++){
+           ans = max(ans, dp[i]);
+       }
+       
+       return ans;
+}
