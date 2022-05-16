@@ -15,10 +15,10 @@ int editDistance(string s, string t){
         for(int i=1; i<=n1; i++){
             for(int j=1; j<=n2; j++){
                 if(s[i-1] == t[j-1]){
-                    dp[i][j] = dp[i-1][j-1];
+                    dp[i][j] = dp[i-1][j-1];  // when chars are same then no operation needed.
                 }
                 else{
-                    dp[i][j] = 1 + min({dp[i-1][j-1], dp[i-1][j], dp[i][j-1]});
+                    dp[i][j] = 1 + min({dp[i-1][j-1], dp[i-1][j], dp[i][j-1]});         // when different then look for min of operations.
                 }
             }
         }
