@@ -10,7 +10,7 @@ public:
         dp[n] = true;
         for(int i=n-1; i>=0; i--){
             for(int j=0; j<m; j++){
-                string word = B[i];
+                string word = B[j];
                 if(i+word.length() <= n and s.substr(i, word.length()) == word){
                     dp[i] = dp[i+word.length()];
                 }
