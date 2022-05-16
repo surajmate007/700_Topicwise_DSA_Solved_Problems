@@ -22,13 +22,9 @@ int maxGold(int n, int m, vector<vector<int>> M){
 
         for (int c = 0; c < m; ++c)
         	for (int r = 0; r < n; ++r)
-        		dp[r + 1][c] = M[r][c] +
-        			max(dp[r    ][c - 1], 
-        			max(dp[r + 1][c - 1], 
-        				dp[r + 2][c - 1]));
+        		dp[r + 1][c] = M[r][c] + max({dp[r][c - 1], dp[r + 1][c - 1], dp[r + 2][c - 1]});
         
         int ret = 0;
-        
         for (int r = 0; r < n + 2; ++r)
         	ret = max(ret, dp[r][m - 1]);
         	
