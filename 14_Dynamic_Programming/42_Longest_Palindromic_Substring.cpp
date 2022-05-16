@@ -1,25 +1,25 @@
 
 
-int longestPalSubstr(string str)
-{
+int longestPalSubstr(string str){
     // get length of input string
     int n = str.size();
 
     // table[i][j] will be false if substring
     // str[i..j] is not palindrome.
     // Else table[i][j] will be true
+    // here i represents the start index and j reresents the end index of the string.
     bool table[n][n];
 
     memset(table, 0, sizeof(table));
 
-    // All substrings of length 1
-    // are palindromes
+    // All substrings of length 1 are palindromes
     int maxLength = 1;
 
     for (int i = 0; i < n; ++i)
         table[i][i] = true;
 
     // check for sub-string of length 2.
+    
     int start = 0;
     for (int i = 0; i < n - 1; ++i) {
         if (str[i] == str[i + 1]) {
