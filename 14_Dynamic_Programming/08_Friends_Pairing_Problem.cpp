@@ -1,4 +1,5 @@
-// simple 1D array is needed. we will initialize first few inexes in array.
+// simple 1D array is needed. we will initialize first few indexes in array.
+// then using the relation : dp[i] = dp[i-1] + (i-1) * dp[i-2]
 
 long long const mod = 1e9 + 7;
     int countFriendsPairings(int n){ 
@@ -11,7 +12,7 @@ long long const mod = 1e9 + 7;
         return dp[n];
 }
 
-// without memoization:
+// without memoization: but not working properly
 
 long long const mod = 1e9 + 7;
     int countFriendsPairings(int n){ 
