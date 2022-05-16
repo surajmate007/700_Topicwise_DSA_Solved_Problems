@@ -6,10 +6,8 @@ int permutationCoeff(int n, int k)
  
     // Calculate value of Permutation
     // Coefficient in bottom up manner
-    for (int i = 0; i <= n; i++)
-    {
-        for (int j = 0; j <= std::min(i, k); j++)
-        {
+    for (int i = 0; i <= n; i++){
+        for (int j = 0; j <= min(i, k); j++){
             // Base Cases
             if (j == 0)
                 P[i][j] = 1;
