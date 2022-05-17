@@ -30,3 +30,31 @@ int maxGold(int n, int m, vector<vector<int>> M){
         	
         return ret;
 }
+
+
+// Easiest Solution which I understood similar to Min Cost Path Problem:
+
+class Solution{
+public:
+    int maxGold(int n, int m, vector<vector<int>> M){
+        int dp[n][m];
+        int omax = 0;
+        for(int i=0; i<n; i++){
+            dp[i][0] = M[i][0];
+            omax = max(omax, M[i][0]);
+        }
+        
+        for(int j=1; j<m; j++){
+            for(int i=0; i<n; i++){
+                int a = 0; int b = dp[i][j-1]; int c=0;
+                if(i > 0){ a = dp[i-1][j-1];}
+                if(i < n-1){ c = dp[i+1][j-1];}
+                
+                dp[i][j] = M[i][j] + max({a, b, c});
+                omax = max(omax, dp[i][j]);
+            }
+        }
+        return omax;
+    }
+};
+
