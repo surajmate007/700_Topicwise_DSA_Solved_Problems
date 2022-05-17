@@ -6,6 +6,8 @@
 class Solution{
     public:
     //Function to find length of longest increasing subsequence.
+    // complete binary search function can be replaced by lower bound in c++
+    // ie lower bound of any value to search in vector is :          int low = lower_bound(vec.begin(), vec.end(), val);
     void binaerysrch(vector<int>& vec, int val){
         int lo = 0;
         int hi = vec.size()-1;
@@ -41,25 +43,22 @@ class Solution{
 
 
 // Another solution which takes O(n2) TC:
-// the above solution does not give the exact LIS array elements hence this new approach can be used to find the total sum of LIS elements.
+// the above solution does not give the exact LIS array elements hence this new approach can be used which can be further modified
+// to find the total sum of LIS elements.
 
 int longestSubsequence(int n, int a[]){
        int dp[n+1];
        for(int i=0; i<n; i++){
            dp[i] = 1;
        }
+       int ans = 0;
        for(int i=0; i<n; i++){
            for(int j=0; j<i; j++){
                if(a[i] > a[j] and dp[j]+1 > dp[i]){
                    dp[i] = dp[j]+1;
+                   ans = max(ans, dp[i]);
                } 
            }
-       }
-       
-       int ans = 0;
-       for(int i=0; i<n; i++){
-           ans = max(ans, dp[i]);
-       }
-       
+       }      
        return ans;
 }
