@@ -61,7 +61,7 @@ public:
     }
 };
 
-// solution from reference github profile:
+// solution from reference github profile modification of longest increasing subsequence:
 
 int wordBreak(string A, vector<string>& B) {
     set<string> s;
