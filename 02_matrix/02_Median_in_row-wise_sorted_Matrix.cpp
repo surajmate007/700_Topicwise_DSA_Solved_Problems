@@ -42,7 +42,7 @@ public:
     int median(vector<vector<int>> &matrix, int r, int c){
         int low = 1; int high = 1e9;
         while(low <= high){
-            int mid = (low+high) >> 1;
+            int mid = (low+high)>> 1;
             int cnt = 0;
             for(int i=0; i<r; i++){
                 cnt += upperbound(matrix[i], mid, c);
