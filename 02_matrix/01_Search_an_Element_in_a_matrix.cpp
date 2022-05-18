@@ -1,5 +1,5 @@
 // To search an element in matrix we will use the sorted property of an array to reduce the saerch complexity.
-// we will first go through all the elements in last column to finalize the for searching and then using binary saerch
+// we will first go through all the elements in last column to finalize the row for searching and then using binary saerch
 // in that row due to its sorted nature.
 
 class Solution {
