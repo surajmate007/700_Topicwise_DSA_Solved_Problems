@@ -31,7 +31,7 @@ void rotate90Clockwise(int a[N][N]){
     }
 }
 
-// This approach is not changinf the array into 90 degrees but it is just printing the array elements such that they are shifted 90 degrees.
+// This approach is not changing the array into 90 degrees but it is just printing the array elements such that they are shifted 90 degrees.
 
 void rotate90Clockwise(int arr[N][N])
 {
@@ -76,10 +76,8 @@ void rotate(int arr[N][N]){
      
     // First rotation
     // with respect to Secondary diagonal
-    for(int i = 0; i < N; i++)
-    {
-        for(int j = 0; j < N - i; j++)
-        {
+    for(int i = 0; i < N; i++){
+        for(int j = 0; j < N - i; j++){
             int temp = arr[i][j];
             arr[i][j] = arr[N - 1 - j][N - 1 - i];
             arr[N - 1 - j][N - 1 - i] = temp;
