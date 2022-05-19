@@ -107,6 +107,7 @@ string longestPalin (string s) {
 }
 
 // This approach is using DP : I tried DP approach first but it is not working.
+// DP approach is already solved in DP section.
 
 
 void printSubStr(
