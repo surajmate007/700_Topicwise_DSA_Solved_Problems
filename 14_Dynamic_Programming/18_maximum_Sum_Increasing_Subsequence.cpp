@@ -8,8 +8,8 @@ int maxSumIS(int arr[], int n){
 	    
 	    for(int i=1; i<n; i++){
 	        for(int j=0; j<i; j++){
-	            if(arr[j] < arr[i] and dp[i] < dp[j]+arr[i]){
-	                dp[i] = dp[j] + arr[i];
+	            if(arr[j] < arr[i]){
+	                dp[i] = max(dp[i], dp[j] + arr[i]);
 			ans = max(ans, dp[i]);
 	            }
 	        }
