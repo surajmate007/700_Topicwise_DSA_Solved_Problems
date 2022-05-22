@@ -19,7 +19,7 @@ int internalSearch(string word, int row, int col, vector<vector<char>>& gird, in
             found += internalSearch(word, row + 1, col, gird, row_max, col_max, idx);
             found += internalSearch(word, row - 1, col, gird, row_max, col_max, idx);
         }
-        hay[row][col] = match;
+        grid[row][col] = temp;
     }
     return found;
 }
