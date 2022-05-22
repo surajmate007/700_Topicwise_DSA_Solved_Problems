@@ -1,4 +1,5 @@
-// We are using the sam recursive approach that is taught in gfg article:
+// We are using the sam recursive approach that is taught in gfg article here direction does not matter hence we can go for searching in any random
+// direction:
 
 class Solution {
 public:
