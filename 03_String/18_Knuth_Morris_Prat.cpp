@@ -1,4 +1,4 @@
-// This is the KMP algorithm preprocessing part:
+// This is the KMP algorithm preprocessing part called as longest prefix suffix:
 
 class Solution{
   public:		
