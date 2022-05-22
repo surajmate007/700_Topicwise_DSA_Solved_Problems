@@ -28,7 +28,7 @@ void fillCharCounts(char *str, int *count)
     }
 
 
-// another simple approach is using haspmap:
+// another simple approach is using hashmap:
 
 void printDups(string str)
 {
