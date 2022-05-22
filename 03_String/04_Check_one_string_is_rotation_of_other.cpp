@@ -8,7 +8,7 @@ bool areRotations(string str1, string str2)
    }
    string temp = str1 + str1;
    bool ans = temp.find(str2) != string::npos;
-   return bool;
+   return ans;
 }
 
 // the 2nd approach is using queues:
