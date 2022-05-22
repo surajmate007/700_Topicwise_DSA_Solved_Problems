@@ -1,5 +1,8 @@
 // This solution approach is provided gfg:
 
+// d is the number of characters in the input alphabet
+#define d 256
+ 
 void search(char pat[], char txt[], int q){
     int M = strlen(pat);
     int N = strlen(txt);
