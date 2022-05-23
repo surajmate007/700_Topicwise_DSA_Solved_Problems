@@ -12,10 +12,8 @@ public:
         
         if(nums[idx] <= target){
             ds.push_back(nums[idx]);
-            target = target - nums[idx];
-            givesum(nums, idx, n, ans, ds, target);
+            givesum(nums, idx, n, ans, ds, target - nums[idx]);
             ds.pop_back();
-            target = target + nums[idx];
         }
         givesum(nums, idx+1, n, ans, ds, target);
     }
