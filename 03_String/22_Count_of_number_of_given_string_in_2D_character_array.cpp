@@ -4,7 +4,7 @@
 int internalSearch(string word, int row, int col, vector<vector<char>>& gird, int row_max, int col_max, int idx){
     int found = 0;
  
-    if (row >= 0 && row <= row_max && col >= 0 && col <= col_max && word[idx] == hay[row][col]){
+    if (row >= 0 && row <= row_max && col >= 0 && col <= col_max && word[idx] == grid[row][col]){
         char temp = word[idx];
         idx += 1;
         gird[row][col] = 0;
