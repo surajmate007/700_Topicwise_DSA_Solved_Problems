@@ -18,7 +18,7 @@ void fillCharCounts(char *str, int *count)
                                       sizeof(int));
         fillCharCounts(str, count);
  
-        // Print characters having count more than 0
+        // Print characters having count more than 1
         int i;
         for (i = 0; i < NO_OF_CHARS; i++)
         if(count[i] > 1)
