@@ -1,4 +1,5 @@
 // easy solution:
+// Based on frequency of corresponding characters we are differeatiating the two strings.
 
 class Solution{
     public:
