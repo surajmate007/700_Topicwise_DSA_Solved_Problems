@@ -25,7 +25,7 @@ class Solution{
         if(s[0] != ans.back()){
             ans.push_back(s[0]);
         }
-        removechar(s.substr(1, s.size()-1), ans);
+        removechar(s.substr(1), ans);
     }
     
     string removeConsecutiveCharacter(string s){
