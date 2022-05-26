@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int minTime(int rank[], int P, int K, int mid){
+bool minTime(int rank[], int P, int K, int mid){
 	int sum = 0; int p = 1; int i = 1; int idx = 0; int ans = INT_MIN;
 // 	cout<<"mid is : "<<mid<<endl;
 	while(p != P+1){
@@ -13,19 +13,17 @@ int minTime(int rank[], int P, int K, int mid){
 			i++;
 			sum = rank[i-1];
 		}
-		
 		if(i > K or rank[i-1]>mid){
-			return -1;
+			return false;
 		}
-		
 // 		cout<<"Sum is : "<<sum<<endl;
 		ans = max(ans, sum);
 		p++;
 	}
-	
 // 	cout<<"return  value : "<<ans<<endl;
-	return ans;
+	return true;
 }
+
 
 int getAns(int rank[], int P, int K, int lo, int hi){
 	int fans = INT_MAX;
