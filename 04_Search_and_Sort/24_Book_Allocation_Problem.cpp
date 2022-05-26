@@ -11,8 +11,8 @@
 class Solution {
     public:
     //Function to find minimum number of pages.
-    int allocatePages(int arr[], int n, int s, int mid){
-        int ans = INT_MIN; int sum = 0; int cnt = 1;
+    bool allocatePages(int arr[], int n, int s, int mid){
+        int sum = 0; int cnt = 1;
         for(int i=0; i<n; i++){
             sum += arr[i];
             if(sum > mid){
@@ -20,15 +20,14 @@ class Solution {
                  cnt++;
             }
             if(cnt > s){
-                return -1;
+                return false;
             }
-            ans = max(ans, sum);
         }
-        return ans;
+        return true;
     }
     
     int findPages(int arr[], int N, int M) {
-        int lo = INT_MAX; int hi = 0; int fans = INT_MAX;
+        int lo = INT_MAX; int hi = 0; int ans = 0;
         for(int i=0; i<N; i++){
              lo = min(lo, arr[i]);
              hi += arr[i];
@@ -36,15 +35,15 @@ class Solution {
         
         while(lo <= hi){
             int mid = (lo + hi) >> 1;
-            int ans = allocatePages(arr, N, M, mid);
-            if(ans == -1){
+            bool flag = allocatePages(arr, N, M, mid);
+            if(flag == false){
                 lo = mid+1;
             }
             else{
-                fans = min(fans, ans);
+                ans = mid;
                 hi = mid-1;
             }
         }
-        return fans;
+        return ans;
     }
 };
