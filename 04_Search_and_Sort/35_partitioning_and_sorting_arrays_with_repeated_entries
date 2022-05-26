@@ -1,0 +1,7 @@
+the trivial implementation of the Quicksort algorithm has a poor performance for repeated elements.
+Quicksort is an efficient sorting algorithm based on the divide and conquer paradigm. Functionally speaking, it operates in-place
+on the input array and rearranges the elements with simple comparison and swap operations.
+
+
+
+Everything on this link : https://www.baeldung.com/java-sorting-arrays-with-repeated-entries#trivial_quicksort
