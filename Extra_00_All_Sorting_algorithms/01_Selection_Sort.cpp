@@ -1,3 +1,8 @@
+// TC = O(n2)
+// SC = O(1)
+
+// It performs well on small length arrays.
+
 #include<iostream>
 using namespace std;
 
