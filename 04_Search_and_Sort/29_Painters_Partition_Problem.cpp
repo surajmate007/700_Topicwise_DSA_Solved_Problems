@@ -20,7 +20,7 @@ class Solution{
     
     
     long long minTime(int arr[], int n, int k){
-        long long lo = INT_MAX; long long hi = 0; long long fans = LLONG_MAX;
+        long long lo = INT_MAX; long long hi = 0; long long ans = LLONG_MAX;
         
         for(int i=0; i<n; i++){
             lo = min(lo, (long long)arr[i]);
@@ -29,15 +29,14 @@ class Solution{
         
         while(lo <= hi){
             long long mid = (lo + hi)/2;
-            allocateWork(arr, n, k, mid);
             if(allocateWork(arr, n, k, mid)){
-                fans = min(fans, mid);
+                ans = mid;
                 hi = mid - 1;
             }
             else{
-                lo = mid+1;
+                lo = mid + 1;
             }
         }
-        return fans;
+        return ans;
     }
 };
