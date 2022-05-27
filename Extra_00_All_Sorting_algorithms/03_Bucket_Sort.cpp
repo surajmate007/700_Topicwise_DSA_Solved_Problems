@@ -1,5 +1,6 @@
 // TC = O(nlogn)
 // SC = O(n).   since we have crate the buckets.
+// Bucket sort is good when input is unoformly distributed over over a range.
 
 // C++ program to sort an
 // array using bucket sort
