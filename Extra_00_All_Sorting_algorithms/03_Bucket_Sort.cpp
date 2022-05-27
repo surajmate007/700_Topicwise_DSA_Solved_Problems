@@ -1,51 +1,44 @@
-// TC = O(nlogn)
-// SC = O(n).   since we have crate the buckets.
-// Bucket sort is good when input is unoformly distributed over over a range.
-
-// C++ program to sort an
-// array using bucket sort
-#include <algorithm>
-#include <iostream>
-#include <vector> 
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<cmath>
+#include<climits>
 using namespace std;
 
-// Function to sort arr[] of
-// size n using bucket sort
-void bucketSort(float arr[], int n)
-{
-	
-	// 1) Create n empty buckets
-	vector<float> b[n];
 
-	// 2) Put array elements
-	// in different buckets
-	for (int i = 0; i < n; i++) {
-		int bi = n * arr[i]; // Index in bucket
-		b[bi].push_back(arr[i]);
-	}
+void bucketSort(int arr[], int n){
+    int mx = INT_MIN;
+    for(int i=0; i<n; i++){
+        mx = max(mx, arr[i]);
+    }
+    int s = sqrt(n);
 
-	// 3) Sort individual buckets
-	for (int i = 0; i < n; i++)
-		sort(b[i].begin(), b[i].end());
+    vector<vector<int> > bucket(n);
+    for(int i=0; i<n; i++){
+        int bn = ceil(((double)arr[i]*(double)s)/(double)mx);
+        bucket[bn-1].push_back(arr[i]);
+    }
 
-	// 4) Concatenate all buckets into arr[]
-	int index = 0;
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < b[i].size(); j++)
-			arr[index++] = b[i][j];
+    int p=0;
+    for(int i=0; i<bucket.size(); i++){
+         
+        sort(bucket[i].begin(), bucket[i].end());
+        for(int j=0; j<bucket[i].size(); j++){
+            arr[p] = bucket[i][j];
+            p++;
+        }
+    }
 }
 
-/* Driver program to test above function */
-int main()
-{
-	float arr[]
-		= { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };
-	int n = sizeof(arr) / sizeof(arr[0]);
-	bucketSort(arr, n);
+int main(){
+    int arr[] = {7, 3, 4, 9, 23, 45, 11, 34};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    bucketSort(arr, n);
 
-	cout << "Sorted array is \n";
-	for (int i = 0; i < n; i++)
-		cout << arr[i] << " ";
-	return 0;
+    for(int i=0; i<n; i++){
+        cout<<arr[i]<<" ";
+    }
+
+    return 0;
 }
-
