@@ -1,4 +1,4 @@
-// This solution is also acceptable but the doubt is why I am not able to access last node by directly head->prev.
+// Just keep in mind it is only doubly LL and not circular doubly LL.
 // Simple 2 pointer apprach used in sorted arrays.
 
 bool findPair(Node* head, int k){
