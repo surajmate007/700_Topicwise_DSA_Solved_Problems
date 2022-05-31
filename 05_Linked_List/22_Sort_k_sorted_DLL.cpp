@@ -45,6 +45,17 @@ struct Node* sortAKSortedDLL(struct Node* head, int k){
 // Time Complexity: O(n*log k)
 // Auxiliary Space: O(k)
 
+
+
+// 'compare' function used to build up the
+// priority queue
+struct compare {
+    bool operator()(struct Node* p1, struct Node* p2)
+    {
+        return p1->data > p2->data;
+    }
+};
+
 // function to sort a k sorted doubly linked list
 struct Node* sortAKSortedDLL(struct Node* head, int k){
     // if list is empty
