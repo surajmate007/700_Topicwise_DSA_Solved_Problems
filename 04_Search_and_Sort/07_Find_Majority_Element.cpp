@@ -68,3 +68,35 @@ int majorityElement(int a[], int size){
         }
         return -1;
     }
+
+
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------- //
+/*
+    Using Moore’s Voting Algorithm
+    TC: O(n)
+    SC: O(1)
+*/
+// C++ Program for finding out
+// majority element in an array
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Function to find the candidate for Majority */
+int findCandidate(int a[], int size)
+{
+    int maj_index = 0, count = 1;
+    for (int i = 1; i < size; i++) {
+        if (a[maj_index] == a[i])
+            count++;
+        else
+            count--;
+        if (count == 0) {
+            maj_index = i;
+            count = 1;
+        }
+    }
+    return a[maj_index];
+}
