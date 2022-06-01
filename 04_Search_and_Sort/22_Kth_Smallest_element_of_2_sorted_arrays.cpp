@@ -107,40 +107,40 @@ int find(int A[], int B[], int m,
 // Best approach out of all the approaches.
 
 
-#include <bits/stdc++.h>
-using namespace std;
- 
-long long int maxN
-    = 1e10; // the maximum value in the array possible.
- 
-long long int kthElement(int arr1[], int arr2[], int n,
-                         int m, int k)
-{
-    long long int left = 1,
-                  right
-                  = maxN; // The range of where ans can lie.
-    long long int ans = 1e15; // We have to find min of all
-                              // the ans so take .
- 
-    // using binary search to check all possible values of
-    // kth element
-    while (left <= right) {
-        long long int mid = (left + right) / 2;
-        long long int up_cnt
-            = upper_bound(arr1, arr1 + n, mid) - arr1;
-        up_cnt += upper_bound(arr2, arr2 + m, mid) - arr2;
- 
-        if (up_cnt >= k) {
-            ans = min(ans,
-                      mid); // find the min of all answers.
-            right
-                = mid - 1; // Try to find a smaller answer.
+int upper_bound(int arr[], int n, int val){
+        int lo = 0; int hi = n-1;
+        while(lo <= hi){
+            int mid = (lo + hi)/2;
+            if(arr[mid] > val){
+                hi = mid-1;
+            }
+            else{
+                lo = mid+1;
+            }
         }
-        else
-            left = mid + 1; // Current mid is too small so
-                            // shift right.
+        
+        return lo;
+    }
+    
+    int kthElement(int arr1[], int arr2[], int n, int m, int k){
+       int lo = min(arr1[0], arr2[0]);
+       int hi = max(arr1[n-1], arr2[m-1]); int ans = INT_MAX;
+       
+       while(lo <= hi){
+           int cnt = 0;
+           int mid = (lo + hi)/2;
+           cnt += upper_bound(arr1, n, mid);
+           cnt += upper_bound(arr2, m, mid);
+           if(cnt >= k){
+               ans = min(ans, mid);
+               hi = mid-1;
+           }
+           else{
+               lo = mid + 1;
+           }
+       }
+       
+       return ans;
     }
  
-    return ans;
-}
  
