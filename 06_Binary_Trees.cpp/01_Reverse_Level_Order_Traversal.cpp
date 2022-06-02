@@ -61,3 +61,39 @@ public:
         return ans;
     }
 };
+
+
+// Using combined stack and queue:
+
+
+vector<int> reverseLevelOrder(Node *root){
+    vector<int> ans;
+    if(root == NULL){
+        return ans;
+    }
+    
+    queue<Node*> q;
+    stack<Node*> st;
+    
+    q.push(root);
+    
+    while(!q.empty()){
+        Node* nd = q.front();
+        
+        if(nd->right != NULL){
+            q.push(nd->right);
+        }
+        if(nd->left != NULL){
+            q.push(nd->left);
+        }
+        st.push(nd);
+        q.pop();
+    }
+    
+    while(st.size()){
+        ans.push_back(st.top()->data);
+        st.pop();
+    }
+    
+    return ans;
+}
