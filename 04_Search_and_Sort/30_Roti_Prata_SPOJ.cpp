@@ -30,7 +30,7 @@ int getAns(int rank[], int P, int K, int lo, int hi){
 	while(lo <= hi){
 		int mid = (lo + hi)/2;
 		int mtime = minTime(rank, P, K, mid);
-		if(mtime == -1){
+		if(mtime == false){
 			lo = mid + 1;
 		}
 		else{
