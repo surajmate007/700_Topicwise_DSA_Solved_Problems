@@ -35,3 +35,44 @@ class Solution {
         return false;
    }
 };
+
+
+// leetcode problem similar to this only some modification in string formation.
+
+class Solution {
+public:
+    vector<TreeNode*> ans;
+    unordered_map<string, pair<TreeNode*, bool>> mp;
+    
+    string getStr(TreeNode* root){
+        string s = "";
+        if(root == NULL){
+            return "$";
+        }
+        
+        s += ("_" + to_string(root->val));
+        s += ("_" + getStr(root->left));
+        s += ("_" + getStr(root->right));
+        
+        if(mp.find(s) != mp.end() and mp[s].second == false){
+            ans.push_back(mp[s].first);
+            mp[s].second = true;
+        }
+        
+        mp[s] = {root, mp[s].second};
+        
+        return s;
+    }
+    
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        if(root == NULL){
+            return ans;
+        }
+        
+        getStr(root);
+        for(auto e : mp){
+            cout<<e.first<<" "<<e.second.first->val<<" "<<e.second.second<<endl;
+        }
+        return ans;
+    }
+};
