@@ -11,3 +11,18 @@ int countSquares(int N) {
         
         return ans;
     }
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------- //
+/*
+    note: said "less than N"
+    TC: O(1)
+*/
+int countSquares(int N) {
+
+    int ans = sqrt(N - 1);
+
+    return ans;
+}
+
