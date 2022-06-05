@@ -1,5 +1,7 @@
 // we are using queue and map for finding the top view.
 // Better explained in striver video : https://www.youtube.com/watch?v=Et9OCDNvJ78
+// Based on the fact that every node belongs to some horzontal level.
+
 
 class Solution{
     public:
