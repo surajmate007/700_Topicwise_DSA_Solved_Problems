@@ -16,3 +16,18 @@ int minimumNumberOfSwaps(string s){
         
         return swap;
 }
+
+// letcode problem. Both are different problems
+
+class Solution {
+public:
+    int minSwaps(string s) {
+        int open=0,incorrect=0;
+        for(char c:s){
+            if(!open and c==']') incorrect++;
+            else if(c=='[') open++;
+            else open--;
+        }
+        return (incorrect+1)/2;
+    }
+};
