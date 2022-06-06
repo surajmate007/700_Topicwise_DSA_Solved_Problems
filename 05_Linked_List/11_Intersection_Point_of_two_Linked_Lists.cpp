@@ -62,6 +62,7 @@ int intersectPoint(Node* head1, Node* head2)
 
 
 // This solution will also work but giving TLE.
+// This solution will work when it is confirmed that the linked list will have intersection. 
 
 //Function to find intersection point in Y shaped Linked Lists.
 int intersectPoint(Node* head1, Node* head2){
