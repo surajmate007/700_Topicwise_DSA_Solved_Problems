@@ -79,3 +79,31 @@ int intersectPoint(Node* head1, Node* head2){
     }
     return temp1->data;
 }
+
+// Old solution submitted on letcode.
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode* l1 = headA;
+        ListNode* l2 = headB;
+        if(l1 == NULL or l2 == NULL){
+            return NULL;
+        }
+        while(l1 != l2){
+            if(l1 == NULL){
+                L1 = headB;
+            }
+            else{
+                l1 = l1 ->next;
+            }
+            if(l2 == NULL){
+                l2 = headA;
+            }
+            else{
+                l2 = l2->next;
+            }
+        }
+        return l1;
+    }
+};
