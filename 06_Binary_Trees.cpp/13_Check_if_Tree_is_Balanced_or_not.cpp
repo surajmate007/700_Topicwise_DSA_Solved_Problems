@@ -32,3 +32,34 @@ class Solution{
         return true;
     }
 };
+
+
+
+// More easy nad intuitive code:
+
+
+class Solution{
+    public:
+    //Function to check whether a binary tree is balanced or not.
+    bool flag = true;
+    
+    int check(Node* root){
+        if(root == NULL){
+            return 0;
+        }
+        
+        int lh = check(root->left);
+        int rh = check(root->right);
+        
+        if(abs(rh-lh) > 1){
+            flag = false;
+        }
+        
+        return max(lh, rh) + 1;
+    }
+    
+    bool isBalanced(Node *root){
+        check(root);
+        return flag;
+    }
+};
