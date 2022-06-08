@@ -34,7 +34,11 @@ vector<int> find(int arr[], int n, int x)
 // 1. For first occurance of an element in else part we have to do hi = mid-1;
 // 2. For last occurance of an element in lese part we have to do lo = mid+1;
 
-
+// lower_bound returns an iterator pointing to the first element in the range [first,last) which has a value not less than ‘val’. 
+// and if the value is not present in the vector then it returns the end iterator.
+// upper_bound returns an iterator pointing to the first element in the range [first,last) which has a value greater than ‘val’. 
+                                                                            
+                                                                            
 vector<int> find(int arr[], int n, int x){
     int lo=0; int hi=n-1; vector<int> ans;
 
