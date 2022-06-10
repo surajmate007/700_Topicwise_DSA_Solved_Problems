@@ -1,3 +1,8 @@
+// Here the approach is simple we are first sorting the train arrival and departure times and then we will use 2 pointers on different arrays and 
+// see whether before arrival of next train any train deparets or not. If the train departs then we wont need any extra platform but if the 
+// train train doesn't depart before the ariival of next train then we will nedd one extra platform.
+
+
 class Solution{
   public:
     
