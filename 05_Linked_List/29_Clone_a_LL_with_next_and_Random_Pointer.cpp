@@ -1,4 +1,4 @@
-// Expected time and space complexity for this problem is O(n) and O(1) resp.
+// Expected time and space complexity for this problem is O(n) and O(n) resp.
 // we have used unordered_map in this solution.
 
 
