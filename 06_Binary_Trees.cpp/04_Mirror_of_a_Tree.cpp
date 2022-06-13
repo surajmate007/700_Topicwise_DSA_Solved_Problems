@@ -1,3 +1,25 @@
+// More easy code to find the mirror of the tree.
+
+BinaryTreeNode<int>* getMirror(BinaryTreeNode<int>*& root){
+    if(root == NULL){
+        return root;
+    }
+    
+    BinaryTreeNode<int>* l = getMirror(root->left);
+    BinaryTreeNode<int>* r = getMirror(root->right);
+    
+    root->right = l;
+    root->left = r;
+    
+    return root;
+}
+
+void mirrorTree(BinaryTreeNode<int> *root) {
+    getMirror(root);
+}
+
+
+
 //  In order to change the original tree in its mirror tree, then we simply swap the left and right link of each node.
 //  If the node is leaf node then do nothing.
 
