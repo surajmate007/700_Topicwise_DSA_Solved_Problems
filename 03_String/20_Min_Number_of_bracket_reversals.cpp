@@ -24,3 +24,26 @@ int countRev (string s){
    int ans = (open%2 + open/2 + close%2 + close/2);
    return ans;
 }
+
+
+
+// Better algo for this :
+
+int minRemovals(string s, int n){
+        int open = 0; int close = 0; stack<char> st;
+        for(int i=0; i<n; i++){
+            if(s[i] == '('){
+                st.push(s[i]);
+            }
+            else if(s[i] == ')'){
+                if(!st.empty()){
+                    st.pop();
+                }
+                else{
+                    st.push(')');
+                }
+            }
+        }
+        
+        return st.size();
+ }
