@@ -30,3 +30,7 @@ public:
         return dp[n][m];
     }
 };
+
+
+// Another good approach for thius problem can be we will first find the LCS between both the strings and then 
+                    (number of deletions = len1 + len2 - 2 * lenLCS)
