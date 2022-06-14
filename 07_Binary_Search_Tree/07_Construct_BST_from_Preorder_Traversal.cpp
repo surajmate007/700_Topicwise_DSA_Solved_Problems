@@ -100,3 +100,20 @@ public:
         return build(pre, i, INT_MAX);
     }
 };
+
+
+// Similar way of constructing BST from inorder:
+
+
+TreeNode<int>* formBST(vector<TreeNode<int>*> ans, int lo, int hi){
+    if(lo < hi){
+        return NULL;
+    }
+    
+    int mid = (lo+hi)/2;
+    TreeNode<int>* nd = ans[mid];
+    nd->left = formBST(ans, lo, mid-1);
+    nd->right = formBST(ans, mid+1, hi);
+    
+    return nd;
+}
