@@ -16,17 +16,17 @@ class Solution {
         
         int maxd = 0; 
         for(int i=0; i<n; i++){
-            maxd = max(maxd, arr[i].dead);
+            maxd = max(maxd, arr[i].dead);              // Searching highest deadline for any job
         }
         
         
         int maxp = 0; int cnt = 0;
-        int vec[maxd+1];
+        int vec[maxd+1];                                // vector to keep track of which desadline is already used.
         memset(vec, -1, sizeof(vec));
         
         for(int i=0; i<n; i++){
             int dline = arr[i].dead;
-            while(vec[dline] != -1 and dline > 0){
+            while(vec[dline] != -1 and dline > 0){      // SEACHCHING FOR LAST POSSIBLE DEADLINE WHICH IS NOT UTILISED.
                 dline--;
             }
             if(dline != 0){
