@@ -1,3 +1,6 @@
+// the thing about 2 satck implementation is one opf the stack woill start from 0 index and the other stack will satrt form last index of the array.
+// Both the stacks will keep on growing towards each other.
+
 // { Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
