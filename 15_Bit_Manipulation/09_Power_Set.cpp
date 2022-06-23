@@ -31,3 +31,33 @@ class Solution{
 		return ans;
 	}
 };
+
+
+// Using Power sets:
+// The concept is if we are generating all the permutations of a given number (length of string) then the position of 0 in each permutation will represent 
+// that the character is presemt in the string and its absence will tell that the character is excluded from the string.
+
+class Solution{
+	public:
+	
+	vector<string> AllPossibleStrings(string s){
+	    int n = s.length();
+	    vector<string> ans;
+	    
+		for(int i=1; i<=(1<<n)-1; i++){
+		    string str = "";
+		    
+		    for(int j=0; j<n; j++){
+		        if(i & (1<<j)){
+		            str += s[j];
+		        }
+		    }
+		    
+		    ans.push_back(str);
+		}
+		
+		sort(ans.begin(), ans.end());
+		
+		return ans;
+	}
+};
