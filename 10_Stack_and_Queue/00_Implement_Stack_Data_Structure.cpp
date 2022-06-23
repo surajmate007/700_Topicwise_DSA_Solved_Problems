@@ -30,7 +30,9 @@
 // Forward and backward features in web browsers
 // Used in many algorithms like Tower of Hanoi, tree traversals, stock span problems, and histogram problems.
 // Backtracking is one of the algorithm designing techniques. Some examples of backtracking are the Knight-Tour problem, N-Queen problem,
-// find your way through a maze, and game-like chess or checkers in all these problems we dive into someway if that way is not efficient we come back to the previous state and go into some another path. To get back from a current state we need to store the previous state for that purpose we need a stack.
+// find your way through a maze, and game-like chess or checkers in all these problems we dive into someway if that way is not efficient we come back
+// to the previous state and go into some another path. To get back from a current state we need to store the previous state for that purpose we need
+// a stack.
 // In Graph Algorithms like Topological Sorting and Strongly Connected Components
 // In Memory management, any modern computer uses a stack as the primary management for a running purpose. Each program that is running in a computer
 // system has its own memory allocations
