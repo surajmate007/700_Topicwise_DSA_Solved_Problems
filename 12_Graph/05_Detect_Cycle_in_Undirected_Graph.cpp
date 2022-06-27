@@ -4,6 +4,8 @@
 // But if the adjacent node strored is different and this node is diferent then we can see that we are reaching to the same node from multiple nodes
 // hence cycle will be present.
 
+// uisng BFS:
+
 class Solution{
   public:
     // Function to detect cycle in an undirected graph.
@@ -85,5 +87,49 @@ public:
                     return true;
             }
         }
+    }
+};
+
+
+
+// Using DFS:
+
+class Solution {
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool flag = false;
+    
+    void getAns(pair<int, int> p, vector<int> adj[], vector<int>& vis){
+        int x = p.first; int y = p.second;
+        vis[x] = 1;
+        
+        for(int i=0; i<adj[x].size(); i++){
+            int e = adj[x][i];
+            if(vis[e] == 0){
+                getAns({e, x}, adj, vis);
+            }
+            else{
+                if(e != y){
+                    flag = true;
+                    return;
+                }
+            }
+        }
+        
+        return;
+    }
+    
+    bool isCycle(int n, vector<int> adj[]) {
+        flag = false;
+        vector<int> vis(n, 0);
+        for(int i=0; i<n; i++){
+            if(vis[i] == 0){
+                getAns({i, -1}, adj, vis);
+                if(flag == true){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 };
