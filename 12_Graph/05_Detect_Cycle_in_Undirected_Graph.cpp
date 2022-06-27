@@ -96,36 +96,33 @@ public:
 
 class Solution {
   public:
-    // Function to detect cycle in an undirected graph.
-    bool flag = false;
-    
-    void getAns(pair<int, int> p, vector<int> adj[], vector<int>& vis){
+  
+    bool getAns(pair<int, int> p, vector<int> adj[], vector<int>& vis){
         int x = p.first; int y = p.second;
         vis[x] = 1;
         
         for(int i=0; i<adj[x].size(); i++){
             int e = adj[x][i];
             if(vis[e] == 0){
-                getAns({e, x}, adj, vis);
+                if(getAns({e, x}, adj, vis)==true){
+                    return true;
+                }
             }
             else{
                 if(e != y){
-                    flag = true;
-                    return;
+                    return true;
                 }
             }
         }
         
-        return;
+        return false;
     }
     
     bool isCycle(int n, vector<int> adj[]) {
-        flag = false;
         vector<int> vis(n, 0);
         for(int i=0; i<n; i++){
             if(vis[i] == 0){
-                getAns({i, -1}, adj, vis);
-                if(flag == true){
+                if(getAns({i, -1}, adj, vis)==true){
                     return true;
                 }
             }
