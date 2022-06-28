@@ -1,4 +1,5 @@
 // In topological sort we arer using stack where we only store the entry after going over the node.
+// Better explained here : https://www.youtube.com/watch?v=Yh6EFazXipA&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=13
 
 class Solution{
 	public:
