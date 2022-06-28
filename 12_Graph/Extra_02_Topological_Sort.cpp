@@ -1,6 +1,8 @@
 // In topological sort we arer using stack where we only store the entry after going over the node.
 // Better explained here : https://www.youtube.com/watch?v=Yh6EFazXipA&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=13
 
+// Using DFS:
+
 class Solution{
 	public:
 	//Function to return list containing vertices in Topological order. 
@@ -31,6 +33,50 @@ class Solution{
 	        ans.push_back(st.top());
 	        st.pop();
 	    }
+	    return ans;
+	}
+};
+
+
+// Using BFS (Kahn's Algorithm)
+
+
+class Solution{
+	public:
+	//Function to return list containing vertices in Topological order. 
+	
+	vector<int> topoSort(int n, vector<int> adj[]){
+
+	    int indgre[n];
+	    memset(indgre, 0, sizeof(indgre));
+	    
+	    for(int i=0; i<n; i++){
+	        for(auto e : adj[i]){
+	            indgre[e]++;
+	        }
+	    }
+	    
+	    queue<int> q;
+	    vector<int> ans;
+	    
+	    for(int i=0; i<n; i++){
+	        if(indgre[i] == 0){
+	            q.push(i);
+	        }
+	    }
+	    
+	    while(!q.empty()){
+	        int p = q.front(); q.pop();
+	        ans.push_back(p);
+	        
+	        for(auto e : adj[p]){
+    	        indgre[e]--;
+    	        if(indgre[e] == 0){
+    	            q.push(e);
+    	        }
+    	    }
+	    }
+	    
 	    return ans;
 	}
 };
