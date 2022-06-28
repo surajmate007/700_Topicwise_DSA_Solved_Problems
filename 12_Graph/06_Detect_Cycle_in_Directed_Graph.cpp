@@ -44,3 +44,52 @@ class Solution {
         return false;
     }
 };
+
+
+// Cycle detection using Kahns algorithm using BFS.
+// We know topological sort is not possible for cyclic graph. Hence if there is cycle in the graph then all nodes will not be included in the
+// topologocal sort. Thus if the count value is less than n means cycle is present in the graph.
+
+
+class Solution {
+  public:
+    
+    bool isCyclic(int n, vector<int> adj[]) {
+        int indgre[n];
+	    memset(indgre, 0, sizeof(indgre));
+	    
+	    for(int i=0; i<n; i++){
+	        for(auto e : adj[i]){
+	            indgre[e]++;
+	        }
+	    }
+	    
+	    queue<int> q;
+	    
+	    for(int i=0; i<n; i++){
+	        if(indgre[i] == 0){
+	            q.push(i);
+	        }
+	    }
+	    
+	    int cnt = 0;
+	    
+	    while(!q.empty()){
+	        int p = q.front(); q.pop();
+	        cnt++;
+	        
+	        for(auto e : adj[p]){
+    	        indgre[e]--;
+    	        if(indgre[e] == 0){
+    	            q.push(e);
+    	        }
+    	    }
+	    }
+	    
+	    if(cnt == n){
+	        return false;
+	    }
+	    
+	    return true;
+    }
+};
