@@ -1,3 +1,16 @@
+// Naive Approach: A simple approach is to one by one remove all edges and see if removal of an edge causes disconnected graph. Following are steps
+// of simple approach for connected graph.
+
+// For every edge (u, v), do following :
+
+// Remove (u, v) from graph 
+// See if the graph remains connected (We can either use BFS or DFS) 
+// Add (u, v) back to the graph.
+// Time Complexity: O(E*(V+E)) for a graph represented using adjacency list.
+
+// Efficient Approach.
+// Better explained here : https://www.youtube.com/watch?v=2rjZH0-2lhk&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=25
+
 #include <bits/stdc++.h>
 using namespace std;
 
