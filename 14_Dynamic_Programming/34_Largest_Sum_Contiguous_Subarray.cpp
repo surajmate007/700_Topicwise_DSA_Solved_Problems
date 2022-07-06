@@ -26,3 +26,39 @@ long long maxSubarraySum(int arr[], int n){
         
         return omax;
 }
+
+
+
+// using DP:
+
+
+class Solution{
+public:	
+	int maxSubstring(string s){
+	    int n = s.length();
+	    int arr[n];
+	    
+	    for(int i=0; i<n; i++){
+	        if(s[i] == '0'){
+	            arr[i] = 1;
+	        }
+	        else{
+	            arr[i] = -1;
+	        }
+	    }
+	    
+	    int dp[n];
+	    dp[0] = max(arr[0], 0);
+	    int ans = dp[0];
+	    
+	    for(int i=1; i<n; i++){
+	        dp[i] = max(arr[i], dp[i-1] + arr[i]);
+	        ans = max(ans, dp[i]);
+	    }
+	    
+	    if(ans == 0){
+	        return -1;
+	    }
+	    return ans;
+	}
+};
