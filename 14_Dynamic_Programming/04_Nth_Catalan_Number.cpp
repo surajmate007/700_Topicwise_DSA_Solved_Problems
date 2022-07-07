@@ -17,3 +17,5 @@ class Solution{
         return dp[n];
     }
 };
+
+// we can find the Nth Catalan Number using the relation : C(n) = (2n)C(n) / (n+1)
