@@ -152,3 +152,84 @@ public:
         return ans;
     }
 };
+
+
+// striver given solution.
+// isSafe function to check whether the queen we are going to place is safe or not.
+// in isSafe function we are only checking in 3 directions.
+
+
+class Solution {
+public:
+    
+    bool isSafe(int row, int col, vector<vector<int>>& grid){
+        int n = grid.size();
+        
+        int i = row; int j = col;
+        while(i>=0 and j>=0){
+            if(grid[i][j] == 1){
+                return false;
+            }
+            i--; j--;
+        }
+        
+        i=row; j=col;
+        while(i>=0){
+            if(grid[i][j] == 1){
+                return false;
+            }
+            i--;
+        }
+        
+        i=row; j=col;
+        while(i>=0 and j<n){
+            if(grid[i][j] == 1){
+                return false;
+            }
+            i--; j++;
+        }
+        
+        return true;
+    }
+    
+    string formStr(int n, int c){
+        string str = "";
+        for(int i=0; i<n; i++){
+            if(i==c){
+                str += 'Q';
+            }
+            else{
+                str += '.';
+            }
+        }
+        
+        return str;
+    }
+    
+    void nqueens(vector<vector<int>>& grid, vector<vector<string>>& ans, vector<string>& ds, int r, int n){
+        if(r == n){
+            ans.push_back(ds);
+            return;
+        }
+        
+        for(int j=0; j<n; j++){
+            if(grid[r][j]==0 and isSafe(r, j, grid)){
+                grid[r][j] = 1;
+                string str = formStr(n, j);
+                ds.push_back(str);
+                nqueens(grid, ans, ds, r+1, n);
+                ds.pop_back();
+                grid[r][j] = 0;
+            }
+        }
+    }
+    
+    
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> ans;
+        vector<string> ds;
+        vector<vector<int>> grid(n, vector<int> (n, 0));
+        nqueens(grid, ans, ds, 0, n);
+        return ans;
+    }
+};
