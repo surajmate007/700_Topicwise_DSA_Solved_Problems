@@ -17,11 +17,13 @@ class Solution{
         }
         
         m[i][j] = 0;
+        // we are traversing the directions in lexicographical order so that we dont have to sort the array of strings at the end.
         
         getPath(m, n, i+1, j, ds+'D', ans);
-        getPath(m, n, i, j+1, ds+'R', ans);
-        getPath(m, n, i-1, j, ds+'U', ans);
         getPath(m, n, i, j-1, ds+'L', ans);
+        getPath(m, n, i-1, j+1, ds+'D', ans);
+        getPath(m, n, i-1, j, ds+'U', ans);
+        
         
         m[i][j] = 1;
     }
