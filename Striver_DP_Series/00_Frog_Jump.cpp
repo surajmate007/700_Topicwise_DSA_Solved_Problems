@@ -27,3 +27,25 @@ int frogJump(int n, vector<int> &heights){
     vector<int> dp(n, -1);
     return getAns(heights, n, 0, dp);
 }
+
+
+// Tabulation:
+
+#include<bits/stdc++.h>
+
+int frogJump(int n, vector<int> &heights){
+    vector<int> dp(n+1, -1);
+    dp[n-1] = 0;
+    
+    int one = INT_MAX, two = INT_MAX;
+    
+    for(int i=n-2; i>=0; i--){
+        one = dp[i+1] + abs(heights[i] - heights[i+1]);
+        if(i<n-2){
+            two = dp[i+2] + abs(heights[i] - heights[i+2]);
+        }
+        dp[i] = min(one, two);
+    }
+    
+    return dp[0];
+}
