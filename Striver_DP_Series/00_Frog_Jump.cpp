@@ -49,3 +49,27 @@ int frogJump(int n, vector<int> &heights){
     
     return dp[0];
 }
+
+
+// space optimisation:
+// since we are using only last 2 values of dp array.
+
+#include<bits/stdc++.h>
+
+int frogJump(int n, vector<int> &heights){
+    int fst = 0, snd = 0;
+    int one = INT_MAX, two = INT_MAX;
+    
+    for(int i=n-2; i>=0; i--){
+        one = fst + abs(heights[i] - heights[i+1]);
+        
+        if(i<n-2){
+            two = snd + abs(heights[i] - heights[i+2]);
+        }
+        
+        snd = fst;
+        fst = min(one, two);
+    }
+    
+    return fst;
+}
