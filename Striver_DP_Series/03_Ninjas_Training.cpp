@@ -83,3 +83,30 @@ int ninjaTraining(int n, vector<vector<int>> &points){
     
     return ans;
 }
+
+
+// space Optimisation:
+// instead of using 2d matrix since at every instant we are only using values from last row hence we are using space optimisation using only 1D array.
+
+#include<bits/stdc++.h>
+
+int ninjaTraining(int n, vector<vector<int>> &points){
+    vector<int> dp(3, 0);
+    vector<int> last = dp;
+    
+    int ans = 0;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<3; j++){
+            if(i==0){
+                dp[j] = points[i][j];
+            }
+            else{
+                dp[j] = points[i][j] + max(last[(j+1)%3], last[(j+2)%3]);
+            }
+            ans = max(ans, dp[j]);
+        }
+        last = dp;
+    }
+    
+    return ans;
+}
