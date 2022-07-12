@@ -52,6 +52,6 @@ long long countTriplets(long long arr[], int n, long long sum){
             }
         }
         
-        return cnt;;
+        return cnt;
 	}
 
