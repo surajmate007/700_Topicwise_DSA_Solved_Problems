@@ -34,7 +34,7 @@ int gettrips(long long arr[], int n, int idx, long long sum, long long adn, vect
 // first sort the array and then using one for loop to fix one element and then using 2 pointer approach to find the remaining 2 elements.
 
 long long countTriplets(long long arr[], int n, long long sum){
-	    sort(arr , arr+n);
+	sort(arr , arr+n);
         long long cnt=0;
         for(int i=0 ; i<n-2 ; i++){
             int j=i+1;
