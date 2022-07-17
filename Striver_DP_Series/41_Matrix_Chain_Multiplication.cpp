@@ -56,3 +56,34 @@ public:
         return getAns(arr, 1, N-1, dp);
     }
 };
+
+
+// Tabulaion:
+
+
+class Solution{
+public:
+
+    int matrixMultiplication(int n, int arr[]){
+        vector<vector<int>> dp(n, vector<int> (n, 0));
+        int ans = INT_MAX;
+        
+        for(int lo=n-1; lo>=1; lo--){
+            for(int hi=lo+1; hi<n; hi++){
+                if(lo==hi){
+                    dp[lo][hi] = 0;
+                }
+                else{
+                    int ans = INT_MAX;
+                    for(int k=lo; k<hi; k++){
+                        int temp = dp[lo][k] + dp[k+1][hi] + arr[lo-1] * arr[k] * arr[hi];
+                        ans = min(ans, temp);
+                    }
+                    dp[lo][hi] = ans;
+                }
+            }
+        }
+        
+        return dp[1][n-1];
+    }
+};
