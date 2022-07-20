@@ -43,7 +43,7 @@ void merge(vector<TreeNode<int>*> vec1, vector<TreeNode<int>*> vec2, vector<Tree
 }
 
 TreeNode<int>* formBST(vector<TreeNode<int>*> ans, int lo, int hi){
-    if(lo < hi){
+    if(lo > hi){
         return NULL;
     }
     
