@@ -10,7 +10,7 @@ void getLL(TreeNode<int>* root, TreeNode<int>*& head, TreeNode<int>*& prev){
     if(head == NULL){
         head = root;
         prev = root;
-        head->left =- NULL;
+        head->left = NULL;
     }
     else{
         prev->right = root;
