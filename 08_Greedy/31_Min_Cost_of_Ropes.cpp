@@ -8,7 +8,7 @@ class Solution{
         priority_queue<long long, vector<long long>, greater<long long>> pq;
         for(long long i=0; i<n; i++){
             pq.push(arr[i]);
-        }for
+        }
         
         long long  ans = 0;
         while(pq.size() > 1){
