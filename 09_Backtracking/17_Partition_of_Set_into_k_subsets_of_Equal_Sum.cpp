@@ -1,62 +1,57 @@
 // More intuitive solution.
 // Revise very very frequently.
+// Good and intuitive solution:
 
-class Solution{
-    public:
-  
-    void getAns(int a[], int n, int k, bool& flag, int cnt, int csum, int osum, vector<int>& visited){
+class Solution {
+public:
     
-        if(cnt == k-1){
-            flag = true;
-            return;
-        }
-      
-        if(csum > osum){
-            return;
-        }
-      
-        if(csum == osum){
-            return getAns(a, n, k, flag, cnt+1, 0, osum, visited);
-            if(flag == true){
-                return;
-            }
-        }
-      
-        for(int i=0; i<n; i++){
-            if(visited[i] == 0){
-                visited[i] = 1;
-                getAns(a, n, k, flag, cnt, csum+a[i], osum, visited);
-                if(flag == true){
-                    return;
-                }
-                visited[i] = 0;
-            }
-        }
-        return;
-    }
-  
-  
-    bool isKPartitionPossible(int a[], int n, int k){
-        if(k > n){
-            return false;
-        }
+    bool getAns(vector<int>& nums, int n, int k, int csum, int osum, int idx, vector<int>& used){
         if(k==1){
             return true;
         }
-        int osum = 0;
-        for(int i=0; i<n; i++){
-            osum += a[i];
-        }
-        if(osum%k != 0){
+        
+        if(idx >= n){
             return false;
         }
         
-        bool flag = false;
-        osum = osum/k;
-        vector<int> visited(n, 0);
+        if(csum == osum){
+            return getAns(nums, n, k-1, 0, osum, 0, used);
+        }
         
-        getAns(a, n, k, flag, 0, 0, osum, visited);
+        for(int i=idx; i<n; i++){
+            if(used[i] == 0 and csum+nums[i] <= osum){
+                used[i] = 1;
+                if(getAns(nums, n, k, csum+nums[i], osum, i+1, used) == true){
+                    return true;
+                }
+                used[i] = 0;
+            }
+        }
         
-        return flag;
+        return false;
+    }
+    
+    bool canPartitionKSubsets(vector<int>& nums, int k) {
+        int n = nums.size();
+        if(k > n){
+            return false;
+        }
+        
+        if(k==1){
+            return true;
+        }
+        
+        int osum = accumulate(nums.begin(), nums.end(), 0);
+        
+        if(osum % k != 0){
+            return false;
+        }
+        
+        osum /= k;
+        vector<int> used(n, 0);
+        sort(nums.begin(), nums.end(), greater<int>());
+        return getAns(nums, n, k, 0, osum, 0, used);
     }
 };
+
+
