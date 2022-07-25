@@ -91,3 +91,40 @@ int main(){
     }
     return 0;
 }
+
+
+
+
+
+// BellmanFord without using structure:
+// Here it is already told that the graph will not have negative cycles hence we dont need to check it by using one extra loop.
+
+
+class Solution{
+	public:
+	/*  Function to implement Dijkstra
+    *   adj: vector of vectors which represents the graph
+    *   S: source vertex to start traversing graph with
+    *   V: number of vertices
+    */
+    
+    vector <int> bellman_ford(int V, vector<vector<int>> adj, int S) {
+        vector<int> dist(V, 1e8);
+        dist[S] = 0;
+        int n = adj.size();
+        
+        for(int i=0; i<V-1; i++){
+            for(int j=0; j<n; j++){
+                vector<int> e = adj[j];
+                int s = e[0]; int d = e[1]; int w = e[2];
+                if(dist[s] != 1e8){
+                    if(dist[s] + w < dist[d]){
+                        dist[d] = dist[s] + w;
+                    }
+                }
+            }
+        }
+        
+        return dist;
+    }
+};
