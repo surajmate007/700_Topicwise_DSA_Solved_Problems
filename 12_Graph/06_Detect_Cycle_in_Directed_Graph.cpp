@@ -75,15 +75,14 @@ class Solution {
 	    int cnt = 0;
 	    
 	    while(!q.empty()){
-	        int p = q.front(); q.pop();
-	        cnt++;
-	        
-	        for(auto e : adj[p]){
-    	        indgre[e]--;
-    	        if(indgre[e] == 0){
-    	            q.push(e);
-    	        }
-    	    }
+			int p = q.front(); q.pop();
+			cnt++;
+			for(auto e : adj[p]){
+				indgre[e]--;
+				if(indgre[e] == 0){
+					q.push(e);
+				}
+		    }
 	    }
 	    
 	    if(cnt == n){
