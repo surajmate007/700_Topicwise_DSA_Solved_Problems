@@ -1,4 +1,5 @@
 // This problem is solved using floyd warshall algorithm.
+// In floyd Warshall we always try to include one vertex in between any 2 vertices and try to find whether any shortest path exist between them or not.
 // Leetcode problem number : 1334
 
 class Solution {
