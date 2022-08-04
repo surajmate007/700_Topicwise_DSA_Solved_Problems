@@ -1,173 +1,54 @@
-// The naive solution for this problem is to check every possible rectangle in given 2D array by counting the total number of 1’s and 0’s in that rectangle.
-// This solution requires 4 nested loops and time complexity of this solution would be O(n^4). An efficient solution is based on Largest rectangular
-// sub-matrix whose sum is 0 which reduces the time complexity to O(n^3). First of all consider every ‘0’ in the matrix as ‘-1’. Now, the idea is to
-// reduce the problem to 1-D array. We fix the left and right columns one by one and find the largest sub-array with 0 sum contiguous rows for every
-// left and right column pair.
+// Here the approach is simple we are first replacing all the 0 is the matrix with -1 then we are trying to find the largest area submatrix with sum 0.
 
-// C++ implementation to find largest area rectangular
-// submatrix with equal number of 1's and 0's
-#include <bits/stdc++.h>
 
+#include<bits/stdc++.h>
 using namespace std;
 
-#define MAX_ROW 10
-#define MAX_COL 10
-
-// This function basically finds largest 0
-// sum subarray in arr[0..n-1]. If 0 sum
-// does't exist, then it returns false. Else
-// it returns true and sets starting and
-// ending indexes as start and end.
-bool subArrWithSumZero(int arr[], int &start,
-              int &end, int n)
-{
-  // to store cumulative sum
-  int sum[n];
-  
-  // Initialize all elements of sum[] to 0
-  memset(sum, 0, sizeof(sum));
-  
-  // map to store the indexes of sum
-  unordered_map<int, int> um;
-  
-  // build up the cumulative sum[] array
-  sum[0] = arr[0];
-  for (int i=1; i<n; i++)
-    sum[i] = sum[i-1] + arr[i];
-  
-  // to store the maximum length subarray
-  // with sum equal to 0
-  int maxLen = 0;
-  
-  // traverse to the sum[] array
-  for (int i=0; i<n; i++)
-  {
-    // if true, then there is a subarray
-    // with sum equal to 0 from the
-    // beginning up to index 'i'
-    if (sum[i] == 0)
-    {
-      // update the required variables
-      start = 0;
-      end = i;
-      maxLen = (i+1);
-    }
+int getAns(vector<int> vec, int n, int hi, int lo){
+    int area = 0;
+    unordered_map<int, int> mp;
+    int sum = 0;
     
-    // else if true, then sum[i] has not
-    // seen before in 'um'
-    else if (um.find(sum[i]) == um.end())
-      um[sum[i]] = i;
-    
-    // sum[i] has been seen before in the
-    // unordered_map 'um'
-    else
-    {
-      // if previous subarray length is smaller
-      // than the current subarray length, then
-      // update the required variables
-      if (maxLen < (i-um[sum[i]]))
-      {
-        maxLen = (i-um[sum[i]]);
-        start = um[sum[i]] + 1;
-        end = i;
-      }
-    }
-  }
-  
-  // if true, then there is no
-  // subarray with sum equal to 0
-  if (maxLen == 0)
-    return false;
-    
-  // else return true
-  return true;
-}
-
-// function to find largest area rectangular
-// submatrix with equal number of 1's and 0's
-void maxAreaRectWithSumZero(int mat[MAX_ROW][MAX_COL],
-                  int row, int col)
-{
-  // to store intermediate values
-  int temp[row], startRow, endRow;
-  
-  // to store the final outputs
-  int finalLeft, finalRight, finalTop, finalBottom;
-  finalLeft = finalRight = finalTop = finalBottom = -1;
-  int maxArea = 0;
-  
-  // Set the left column
-  for (int left = 0; left < col; left++)
-  {
-    // Initialize all elements of temp as 0
-    memset(temp, 0, sizeof(temp));
-    
-    // Set the right column for the left column
-    // set by outer loop
-    for (int right = left; right < col; right++)
-    {
-      // Calculate sum between current left
-      // and right for every row 'i'
-      // consider value '1' as '1' and
-      // value '0' as '-1'
-      for (int i=0; i<row; i++)
-        temp[i] += mat[i][right] ? 1 : -1;
-        
-      // Find largest subarray with 0 sum in
-      // temp[]. The subArrWithSumZero() function
-      // also sets values of finalTop, finalBottom,
-      // finalLeft and finalRight if there exists
-      // a subarray with sum 0 in temp
-      if (subArrWithSumZero(temp, startRow, endRow, row))
-      {
-        int area = (right - left + 1) *
-                  (endRow - startRow + 1);
-
-        // Compare current 'area' with previous area
-        // and accordingly update final values
-        if (maxArea < area)
-        {
-          finalTop = startRow;
-          finalBottom = endRow;
-          finalLeft = left;
-          finalRight = right;        
-          maxArea = area;
+    for(int i=0; i<n; i++){
+        sum += vec[i];
+        if(sum == 0){
+            int ar = (hi-lo+1) * (i+1);
+            area = max(area, ar);
         }
-      }
+        else if(mp.find(sum) != mp.end()){
+            int ar = (hi-lo+1) * (i-mp[sum]);
+            area = max(area, ar);
+        }
+        else{
+            mp[sum] = i;
+        }
     }
-  }
-  
-  // if true then there is no rectangular submatrix
-  // with equal number of 1's and 0's
-  if (maxArea == 0)
-    cout << "No such rectangular submatrix exists:";
-  
-  // displaying the top left and bottom right boundaries
-  // with the area of the rectangular submatrix
-  else
-  {
-    cout << "(Top, Left): "
-      << "(" << finalTop << ", " << finalLeft
-      << ")" << endl;
-      
-    cout << "(Bottom, Right): "
-      << "(" << finalBottom << ", " << finalRight
-      << ")" << endl;  
-    
-    cout << "Area: " << maxArea << " sq.units";  
-  }
+
+    return area;
 }
 
-// Driver program to test above
-int main()
-{
-  int mat[MAX_ROW][MAX_COL] = { {0, 0, 1, 1},
-                  {0, 1, 1, 0},
-                  {1, 1, 1, 0},
-                {1, 0, 0, 1} };
-  int row = 4, col = 4;
-  maxAreaRectWithSumZero(mat, row, col);
-  return 0;          
-          
+int maximumArea(vector<vector<int>>& mat, int n, int m){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            if(mat[i][j] == 0){
+                mat[i][j] = -1;
+            }
+        }
+    }
+    
+    int ans = 0;
+    int k = 0;
+    
+    while(k < n){
+        vector<int> vec(m, 0);
+        for(int i=k; i<n; i++){
+            for(int j=0; j<m; j++){
+                vec[j] += mat[i][j];
+            }
+            ans = max(ans, getAns(vec, m, i, k));   
+        }
+        k++;
+    }
+    return ans;
 }
 
