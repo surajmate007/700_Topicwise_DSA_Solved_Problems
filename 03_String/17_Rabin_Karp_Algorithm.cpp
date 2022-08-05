@@ -65,3 +65,71 @@ void search(char pat[], char txt[], int q){
 //     Worst case of Rabin-Karp algorithm occurs when all characters of pattern and text are same as the hash values of all the substrings
 //     of txt[] match with hash value of pat[]. For example pat[] = “AAA” and txt[] = “AAAAAAA”.
  
+
+// solved on hackerrank:
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#define q 7717
+using namespace std;
+
+int getAns(string& s, string& p){
+    int n = s.length();
+    int m = p.length();
+    int pv=0, sv=0;
+    int h = 1; int d = 256;
+    
+    for(int i=0; i<m-1; i++){
+        h = (h * d)%q;
+    }
+    
+    for(int i=0; i<m; i++){
+        pv = (d * pv + p[i])%q;
+        sv = (d * sv + s[i])%q;
+    }
+    
+    int ans = 0;
+    
+    for(int i=0; i<=n-m; i++){
+        
+        if(sv==pv){
+            bool flag = true;
+            
+            for(int j=0; j<m; j++){
+                if(s[i+j] != p[j]){
+                    flag = false;
+                    break;
+                }
+            }
+            
+            if(flag == true){
+                ans++;
+            }
+        }
+        
+        if(i<n-m){
+            sv = (d*(sv - s[i]*h) + s[i+m])%q;
+ 
+            if (sv < 0)
+            sv = (sv + q);
+        }
+    }
+    
+    return ans;
+}
+
+int main() {
+    int t; cin>>t;
+    while(t--){
+        string p, s;
+        cin>>p>>s;
+        
+        int ans = getAns(s, p);
+        cout<<ans<<endl;
+    }
+    return 0;
+}
+
