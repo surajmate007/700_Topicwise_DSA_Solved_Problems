@@ -104,3 +104,74 @@ void computeLPSArray(char* pat, int M, int* lps)
     }
 }
   
+
+// Implemented KMP:
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void getLps(string p, int n, vector<int>& lps){
+    int i=1; int j=0;
+    
+    while(i<n){
+        if(p[i] == p[j]){
+            lps[i] = j+1;
+            i++; j++;
+        }
+        else{
+            if(j==0){
+                lps[i] = 0; i++;
+            }
+            else{
+                j = lps[j-1];
+            }
+        }
+    }
+}
+
+int getAns(string& s, string& p){
+    int n = s.length(); int m = p.length();
+    vector<int> lps(m, 0);
+    getLps(p, m, lps);
+    int ans = 0;
+    
+    int i=0; int j=0;
+    while(i<n){
+        if(s[i] == p[j]){
+            i++; j++;
+        }
+        
+        if(j==m){
+            ans++;
+            j = lps[j-1];
+        }
+        
+        else if(i<n and p[j] != s[i]){
+            if(j==0){
+                i++;
+            }
+            else{
+                j = lps[j-1];
+            }
+        }
+    }
+    
+    return ans;
+}
+
+int main() {
+    int t; cin>>t;
+    while(t--){
+        string p, s;
+        cin>>p>>s;
+        
+        int ans = getAns(s, p);
+        cout<<ans<<endl;
+    }
+    return 0;
+}
