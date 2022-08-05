@@ -1,3 +1,37 @@
+// Simple Code:
+
+class Solution {
+  public:
+  
+    long long maximumMultiple(int n, int vec[]) {
+        vector<long long> arr;
+        for(int i=0; i<n; i++){
+            arr.push_back(vec[i]);
+        }
+        
+        sort(arr.begin(), arr.end());
+        
+        int c = (n/2)-1;
+        
+        // When both +ve and -ve are same
+        if(arr[c] < 0 and arr[c+1] > 0){
+            reverse(arr.begin()+c+1, arr.end());
+        }
+        
+        long long ans = LLONG_MIN;
+        
+        int i = 0; int j = n-1;
+        while(i < j){
+            long long pro = arr[i] * arr[j];
+            ans = max(ans, pro);
+            i++; j--;
+        }
+        
+        return ans;
+    }
+};
+
+
 // code written by me. here we are taking care of all the possible conditions.
 
 class Solution {
