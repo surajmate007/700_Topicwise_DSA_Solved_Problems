@@ -5,53 +5,37 @@
 
 class Solution{
 public:
-    int maxEqualSum(int n1,int n2,int n3,vector<int> &s1,vector<int> &s2,vector<int> &s3){
-        int i=n1-2; int j=n2-2; int k=n3-2; int ans = 0;
-        int si = s1[n1-1]; int sj = s2[n2-1]; int sk = s3[n3-1];
-    
-        int sa = accumulate(s1.begin(),s1.end(),0);
-        int sb = accumulate(s2.begin(),s2.end(),0);
-        int sc = accumulate(s3.begin(),s3.end(),0);
+    int maxEqualSum(int n1,int n2,int n3,vector<int> &a1,vector<int> &a2,vector<int> &a3){
+        int i= 0; int j = 0; int k = 0;
+        int t1 = accumulate(a1.begin(), a1.end(), 0);
+        int t2 = accumulate(a2.begin(), a2.end(), 0);
+        int t3 = accumulate(a3.begin(), a3.end(), 0);
+        int s1=0, s2=0, s3=0;
+        int ans = 0;
         
-        if(s1 == s2 ans s1 == s3){
-            return s1;
-        }
-        
-        for(int i=0; i<n2; i++){
-            sb += s2[i];
-        }
-        
-        for(int i=0; i<n3; i++){
-            sc += s3[i];
-        }
-        
-        if(sa == sb and sa == sc){
-            return sa;
-        }
-        
-        while(i>=-1 and j>=-1 and k>=-1){
-            // cout<<si<<" "<<sj<<" "<<sk<<endl;
-            if(si == sj and si==sk){
-                ans = si;
-                
-                if(i==-1 or j==-1 or k==-1){
-                    break;
-                }
-                
-                si += s1[i]; sj += s2[j]; sk += s3[k];
-                i--; j--; k--;
+        while(i<n1 and j<n2 and k<n3){
+            int r1 = t1-s1; int r2 = t2-s2; int r3 = t3-s3;
+            
+            if(r1 == 0 or r2 == 0 or r3 == 0){
+                ans = 0;
+                break;
             }
             
-            else if(min({si, sj, sk}) == si){
-                si += s1[i]; i--;
+            if(r1 == r2 and r1 == r3){
+                ans = r1;
+                break;
             }
             
-            else if(min({si, sj, sk}) == sj){
-                sj += s2[j]; j--;
+            if(max({r1, r2, r3}) == r1){
+                s1 += a1[i]; i++;
+            }
+            
+            else if(max({r1, r2, r3}) == r2){
+                s2 += a2[j]; j++;
             }
             
             else{
-                sk += s3[k]; k--;
+                s3 += a3[k]; k++;
             }
         }
         
