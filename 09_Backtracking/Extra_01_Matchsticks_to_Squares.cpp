@@ -28,7 +28,7 @@ class Solution {
     bool makesquare(vector<int>& ms){
         int n = ms.size();
         int osum = accumulate(ms.begin(), ms.end(), 0);
-        if(osum%4 != 0 or ms.size() < 3){
+        if(osum%4 != 0 or ms.size() < 4){
             return false;
         }
         osum /= 4;
