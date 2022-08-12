@@ -32,9 +32,7 @@ class Solution{
                             if(SolveSudoku(a) == true){
                                 return true;
                             }
-                            else{
-                                a[i][j] = 0;
-                            }
+                            a[i][j] = 0;
                         }
                     }
                     return false;
