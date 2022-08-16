@@ -26,6 +26,6 @@ void convertMaxHeap(int arr[], int n){
     // Start from bottommost and rightmost
     // internal mode and heapify all internal
     // modes in bottom up way
-    for (int i = (n-2)/2; i >= 0; --i)
+    for (int i = (n/2)-1; i >= 0; --i)
         MaxHeapify(arr, i, n);
 }
