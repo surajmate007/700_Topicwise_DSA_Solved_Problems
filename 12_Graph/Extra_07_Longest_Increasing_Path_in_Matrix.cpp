@@ -1,12 +1,13 @@
 // I was too uch surprised when this question was solved by sarang in the contest🙁😳🤯
 
-// Now my solution accepted in one go:
+// Now my solution accepted in one go: The solution becomes 70% more faster after using the static dp matrix.
 
 class Solution {
 public:
     int dir[5] = {0, 1, 0, -1, 0};
+    int dp[210][210];
     
-    int getAns(vector<vector<int>>& matrix, int i, int j, int n, int m, vector<vector<int>>& dp){
+    int getAns(vector<vector<int>>& matrix, int i, int j, int n, int m){
         
         if(dp[i][j] != -1){
             return dp[i][j];
@@ -16,7 +17,7 @@ public:
         for(int k=0; k<4; k++){
             int x = i+dir[k]; int y = j+dir[k+1];
             if(x>=0 and y>=0 and x<n and y<m and matrix[x][y] > matrix[i][j]){
-                ans = max(ans, 1 + getAns(matrix, x, y, n, m, dp));
+                ans = max(ans, 1 + getAns(matrix, x, y, n, m));
             }
         }
         
@@ -27,18 +28,17 @@ public:
         int n = matrix.size();
         int m = matrix[0].size();
         int ans = 0;
-        vector<vector<int>> dp(n+1, vector<int> (m+1, -1));
+        memset(dp, -1, sizeof(dp));
         
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                ans = max(ans, getAns(matrix, i, j, n, m, dp));
+                ans = max(ans, getAns(matrix, i, j, n, m));
             }
         }
         
         return ans;
     }
 };
-
 
 // DP + DFS soution.
 
