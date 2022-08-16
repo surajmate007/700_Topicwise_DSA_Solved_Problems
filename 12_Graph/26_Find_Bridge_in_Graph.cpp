@@ -23,9 +23,11 @@ void dfs(int node, int parent, vector<int> &vis, vector<int> &tin, vector<int> &
         if(!vis[it]) {
             dfs(it, node, vis, tin, low, timer, adj); 
             low[node] = min(low[node], low[it]); 
-            if(low[it] > tin[node]) {
+            if(low[it] > tin[node]) {			// This is the standard formula stating if low of adjacent is greater than the time of insertion of 
+                                           		// the node then it will be the bridge. 
                 cout << node << " " << it << endl;
             }
+		
         } else {
             low[node] = min(low[node], tin[it]); 
         }
