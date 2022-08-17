@@ -1,45 +1,43 @@
 // using bfs algorithm.
 
 class Solution {
-    public:
+public:
+    vector<vector<int>> dir = {{1,2}, {2,1}, {1,-2}, {-2,1}, {-1,2}, {2,-1}, {-1,-2}, {-2,-1}};
     
-   vector<vector<int>> level;
-   vector<vector<bool>> vis;
-   
-   vector<pair<int,int>> moves={{-2,-1},{-2,1},{2,-1},{2,1},{1,2},{-1,-2},{-1,2},{1,-2}};
-   
-   bool isvalid(pair<int,int> i , int x , int y , int N){
-       return (((x+i.first)>=0 && (x+i.first)<N) && ((y+i.second)>=0 && (y+i.second)<N)) && !vis[x+i.first][y+i.second]; 
-   }
-   
-   
-    int minStepToReachTarget(vector<int>&KP,vector<int>&TP,int N){
-        level.resize(N, vector<int>(N,0));
-        vis.resize(N, vector<bool>(N,false));
+	int minStepToReachTarget(vector<int>&knp, vector<int>&tgp, int n){
+	    vector<vector<int>> vis(n, vector<int>(n, 0));
+	    
+	    queue<pair<int, int>> q;
+	    q.push({knp[0]-1, knp[1]-1});
+	    vis[knp[0]-1][knp[1]-1] = 1;
+	    
+	    if(knp[0] == tgp[0] and knp[1] == tgp[1]){
+	        return 0;
+	    }
+	    
+	    int ans = 0;
         
-        queue<pair<int,int>> q;
-        q.push({KP[0]-1,KP[1]-1});
-        vis[KP[0]-1][KP[1]-1]=true;
-        level[KP[0]-1][KP[1]-1]=0;
-        
-        while(!q.empty())
-        {
-            pair<int,int> temp=q.front();
-            q.pop();
-            int x=temp.first;
-            int y=temp.second;
-            
-            for(auto i:moves)
-            {
-                if(isvalid(i,x,y,N))
-                {
-                    q.push({x+i.first, y+i.second});
-                    vis[x+i.first][y+i.second]=true;
-                    level[x+i.first][y+i.second]=level[x][y]+1;
-                }
-            }
-        }
-        
-        return level[TP[0]-1][TP[1]-1];
-    }
+	    while(!q.empty()){
+	        int sz = q.size();
+	        ans++;
+	        while(sz--){
+	            pair<int, int> pr = q.front();
+    	        q.pop();
+    	       
+    	        for(int i=0; i<8; i++){
+    	            int x = pr.first + dir[i][0]; int y = pr.second + dir[i][1];
+    	            if(x>=0 and y>=0 and x<n and y<n and vis[x][y] == 0){
+    	                vis[x][y] = 1;
+    	                q.push({x, y});
+    	                
+    	                if(x==tgp[0]-1 and y==tgp[1]-1){
+    	                    return ans;
+    	                }
+    	            }
+    	        }
+	        }
+	    }
+	    
+	    return -1;
+	}
 };
