@@ -21,6 +21,49 @@ int eggDrop(int n, int k) {
        return ans;
 }
 
+
+// Egg Dropping with binary search and memoisation:
+
+class Solution {
+public:
+    int dp[110][10050];
+    
+    int getAns(int e, int k){
+        if(e==1 or k==0 or k==1){
+            return dp[e][k] = k;
+        }
+        
+        if(dp[e][k] != -1){
+            return dp[e][k];
+        }
+        
+        int lo = 1; int hi = k; int ans = 1e9;
+        while(lo <= hi){
+            int mid = lo + (hi-lo)/2;
+            
+            int left = getAns(e-1, mid-1);
+            int right = getAns(e, k-mid);
+            ans = min(ans, 1 + max(left, right));
+            
+            if(left > right){
+                hi = mid - 1;
+            }
+            else{
+                lo = mid + 1;
+            }
+        }
+        
+        return dp[e][k] = ans;
+    }
+    
+    int superEggDrop(int e, int k) {
+        memset(dp, -1, sizeof(dp));
+        return getAns(e, k);
+    }
+};
+
+
+
 // Egg Dropping Memoized:
 
 int dp[201][201];
