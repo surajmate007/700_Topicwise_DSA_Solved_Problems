@@ -1,3 +1,30 @@
+// new Code after inproving recursion and memoisation:
+
+int getAns(vector<int>& arr, int n, int idx, int took, vector<vector<int>>& dp){
+    if(idx >= n){
+        return 0;
+    }
+    
+    if(dp[idx][took] != -1){
+        return dp[idx][took];
+    }
+    
+    int ans1 = 0; int ans2 = 0;
+    
+    if(took <= 1){
+        ans1 = arr[idx] + getAns(arr, n, idx+1, took+1, dp);
+    }
+    ans2 = getAns(arr, n, idx+1, 0, dp);
+    
+    return dp[idx][took] = max(ans1, ans2);
+}
+
+int maxSum(vector<int> &arr, int n) {
+    vector<vector<int>> dp(n+1, vector<int>(3, -1));
+	return getAns(arr, n, 0, 0, dp);
+}
+
+
 // my own written code using dp.
 
 #include<iostream>
