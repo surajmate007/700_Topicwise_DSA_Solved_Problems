@@ -1,3 +1,84 @@
+// Recursion:
+
+class Solution{
+	public:
+	
+	int getAns(int cost[], int n, int idx, int w){
+	    if(idx > n){
+	        if(w==0){
+	            return 0;
+	        }
+	        return 1e9;
+	    }
+	    
+	    int ans = 0;
+	    
+	    if(idx <= w and cost[idx-1] != -1){
+	        int ans1 = cost[idx-1] + getAns(cost, n, idx, w-idx);
+	        int ans2 = getAns(cost, n, idx+1, w);
+	        ans = min(ans1, ans2);
+	    }
+	    else{
+	        ans = getAns(cost, n, idx+1, w);
+	    }
+	    
+	    return ans;
+	}
+	
+	int minimumCost(int cost[], int n, int w) { 
+		int ans = getAns(cost, n, 1, w);
+
+		if(ans == 1e9){
+		    return -1;
+		}
+		return ans;
+	} 
+};
+
+
+// Memoisation:
+
+class Solution{
+	public:
+	
+	int getAns(int cost[], int n, int idx, int w, vector<vector<int>>& dp){
+	    if(idx > n){
+	        if(w==0){
+	            return 0;
+	        }
+	        return 1e9;
+	    }
+	    
+	    if(dp[idx][w] != -1){
+	        return dp[idx][w];
+	    }
+	    
+	    int ans = 0;
+	    
+	    if(idx <= w and cost[idx-1] != -1){
+	        int ans1 = cost[idx-1] + getAns(cost, n, idx, w-idx, dp);
+	        int ans2 = getAns(cost, n, idx+1, w, dp);
+	        ans = min(ans1, ans2);
+	    }
+	    else{
+	        ans = getAns(cost, n, idx+1, w, dp);
+	    }
+	    
+	    return dp[idx][w] = ans;
+	}
+	
+	int minimumCost(int cost[], int n, int w) { 
+	    vector<vector<int>> dp(n+1, vector<int>(w+1, -1));
+        int ans = getAns(cost, n, 1, w, dp);
+        
+        if(ans == 1e9){
+            return -1;
+        }
+        return ans;
+	} 
+};
+
+
 // using simple top down approach 
 
 class Solution{
