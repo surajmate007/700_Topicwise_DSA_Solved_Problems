@@ -1,6 +1,9 @@
 // solution using pq.
 
-int furthestBuilding(vector<int>& a, int b, int l) {
+class Solution {
+public:
+    
+    int furthestBuilding(vector<int>& heights, int bricks, int ladders) {
         priority_queue<int, vector<int>, greater<int>> pq;
         
         int n = heights.size();
@@ -18,8 +21,7 @@ int furthestBuilding(vector<int>& a, int b, int l) {
         }
         return n-1;  
     }
-
-
+};
 
 // Uisng backtracking but giving TLE.
 
