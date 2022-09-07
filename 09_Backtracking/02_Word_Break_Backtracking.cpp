@@ -40,3 +40,40 @@ public:
         return ans;
     }
 };
+
+
+// another similar and good approach:
+
+
+#include<bits/stdc++.h>
+vector<string> ans;
+unordered_set<string> st;
+
+void getAns(string s, string& ds){
+    if(s.length() == 0){
+        ds.pop_back();
+        ans.push_back(ds);
+        return;
+    }
+    
+    for(int i=0; i<s.length(); i++){
+        string ns = s.substr(0, i+1);
+        if(st.find(ns) != st.end()){
+            int len = ds.length();
+            ds += (ns + " ");
+            getAns(s.substr(i+1), ds);
+            ds = ds.substr(0, len);
+        }
+    }
+}
+
+vector<string> wordBreak(string &s, vector<string> &dictionary){
+    ans.clear(); st.clear();
+    for(int i=0; i<dictionary.size(); i++){
+        st.insert(dictionary[i]);
+    }
+    string ds = "";
+    getAns(s, ds);
+    
+    return ans;
+}
