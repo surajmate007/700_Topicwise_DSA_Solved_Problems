@@ -34,3 +34,41 @@ public:
         return formTree(preorder, 0, n-1);
     }
 };
+
+
+
+// Construct binary tree from postorder and inorder traversal:
+
+class Solution {
+public:
+    
+    int idx = 0; 
+    unordered_map<int, int> mp;
+    
+    TreeNode* formTree(vector<int>& post, int lo, int hi){
+        if(lo > hi){
+            return NULL;
+        }
+        
+        int p = mp[post[idx]];
+        TreeNode* nd = new TreeNode(post[idx]);
+        
+        idx++;
+        nd->right = formTree(post, p+1, hi);
+        nd->left = formTree(post, lo, p-1);
+        
+        return nd;
+    }
+    
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        mp.clear(); idx = 0;
+        int n = inorder.size();
+        
+        for(int i=0; i<n; i++){
+            mp[inorder[i]] = i;
+        }
+        reverse(postorder.begin(), postorder.end());
+        
+        return formTree(postorder, 0, n-1);
+    }
+};
