@@ -42,40 +42,24 @@ public:
 // Then from the previous problem solved in Binary trees section we can create the tress from both of these traversals.
 
 
-class Solution {
-public:
-    unordered_map<int, int> mp;
-    int idx = 0;
-    
-    TreeNode* helper(vector<int> in, int i, int j){
-        if(i>j){
-            return NULL;
-        }
-        
-        TreeNode* temp;
-        for(int k=i; k<=j; k++){
-            if(mp[in[k]] == idx){
-                temp = new TreeNode(in[k]);
-                idx++;
-                temp->left = helper(in, i, k-1);
-                temp->right = helper(in, k+1, j);
-            }
-        }
-        
-        return temp;
+TreeNode<int>* formTree(vector<int>& arr, int lo, int hi){
+    if(lo > hi){
+        return NULL;
     }
     
-    TreeNode* bstFromPreorder(vector<int>& pre) {
-        int n = pre.size();
-        vector<int> in = pre;
-        sort(in.begin(), in.end());
-        for(int i=0; i<n; i++){
-            mp[pre[i]] = i;
-        }
-        
-        return helper(in, 0, n-1);
-    }
-};
+    int mid = lo + (hi-lo)/2;
+    TreeNode<int>* nd = new TreeNode<int> (arr[mid]);
+    nd->left = formTree(arr, lo, mid-1);
+    nd->right = formTree(arr, mid+1, hi);
+    
+    return nd;
+}
+
+TreeNode<int>* preOrderTree(vector<int> &pre){
+    sort(pre.begin(), pre.end());
+    int n = pre.size();
+    return formTree(pre, 0, n-1);
+}
 
 
 
