@@ -2,6 +2,27 @@
 // element in vector. if it is then push it to vector else find its perfect position in vector using binary search and put that element on its perfect
 // position. TC = O(Nlog(n)) SC = O(n)
 
+// This problem can be directly solved uisng lower bound.
+
+#include<bits/stdc++.h>
+int longestIncreasingSubsequence(int arr[], int n){
+    vector<int> vec; vec.push_back(arr[0]); int len = 1;
+    
+    for(int i=1; i<n; i++){
+        if(arr[i] > vec.back()){
+            vec.push_back(arr[i]);
+            len++;
+        }
+        else{
+            int idx = lower_bound(vec.begin(), vec.end(), arr[i])-vec.begin();
+            vec[idx] = arr[i];
+        }
+    }
+    
+    return len;
+}
+
+
 
 class Solution{
     public:
