@@ -1,27 +1,30 @@
 // good solution from youtube video.
 
-class Solution{
-public:
+#include<bits/stdc++.h>
+unordered_set<string> st;
+
+bool wordBreak(vector<string>& arr, int n, string& s) {
+    st.clear();
+    for(int i=0; i<n; i++){
+        st.insert(arr[i]);
+    }
     
-    int wordBreak(string s, vector<string> &B) {
-        int n = s.length();
-        int m = B.size();
-        bool dp[n+1];
-        dp[n] = true;
-        for(int i=n-1; i>=0; i--){
-            for(int j=0; j<m; j++){
-                string word = B[j];
-                if(i+word.length() <= n and s.substr(i, word.length()) == word){
-                    dp[i] = dp[i+word.length()];
-                }
-                if(dp[i]){
-                    break;
-                }
+    int len = s.length();
+    vector<bool> dp(len+1);
+    dp[len] = true;
+    
+    for(int i=len-1; i>=0; i--){
+        for(auto word : arr){
+            int sz = word.length();
+            if(i+sz<=len and st.find(s.substr(i, sz)) != st.end()){
+                dp[i] = dp[i+sz];
+                break;
             }
         }
-        return dp[0];
     }
-};
+    
+    return dp[0];
+}
 
 
 // another simple solution:
