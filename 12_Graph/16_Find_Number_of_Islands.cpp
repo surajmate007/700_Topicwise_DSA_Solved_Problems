@@ -1,3 +1,37 @@
+// using dfs:
+
+int dir1[8] = {0, 1, 0, -1, 1, 1, -1, -1};
+int dir2[8] = {1, 0, -1, 0, 1, -1, 1, -1};
+
+int getAns(int** arr, int n, int m, int i, int j){
+    arr[i][j] = 0;
+    
+    for(int d=0; d<8; d++){
+        int x = i+dir1[d]; int y = j+dir2[d];
+        if(x>=0 and y>=0 and x<n and y<m and arr[x][y]==1){
+            getAns(arr, n, m, x, y);
+        }
+    }
+    
+    return 1;
+}
+
+int getTotalIslands(int** arr, int n, int m){
+    int ans = 0;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            if(arr[i][j] == 1){
+                ans += getAns(arr, n, m, i, j);
+            }
+        }
+    }
+    
+    return ans;
+}
+
+
+
+
 // This is the brute force solution for this problem but giving TLE.
 // I am using the concept of BFS.
 
@@ -42,6 +76,9 @@ class Solution {
         return ans;
     }
 };
+
+
+
 
 
 // This is the code library code and also giving TLE:
