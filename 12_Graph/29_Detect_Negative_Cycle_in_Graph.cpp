@@ -46,3 +46,41 @@ public:
 	    return fl;
 	}
 };
+
+
+
+class Solution{
+	public:
+	/*  Function to implement Dijkstra
+    *   adj: vector of vectors which represents the graph
+    *   S: source vertex to start traversing graph with
+    *   V: number of vertices
+    */
+    
+    vector <int> bellman_ford(int V, vector<vector<int>> adj, int S) {
+        vector<int> dist(V, 1e8);
+        dist[S] = 0;
+        int n = adj.size();
+        
+        for(int i=0; i<V-1; i++){
+            for(int j=0; j<n; j++){
+                vector<int> e = adj[j];
+                int s = e[0]; int d = e[1]; int w = e[2];
+                if(dist[s] != 1e8){
+                    if(dist[s] + w < dist[d]){
+                        dist[d] = dist[s] + w;
+                    }
+                }
+            }
+        }
+        
+		for(int j=0; j<n; j++){
+			int s = adj[j][0]; int d = adj[j][1]; int w = adj[j][2];
+			if(dist[d] > dist[s] + w){
+				return true;
+			}
+		}
+		
+        return false;
+    }
+};
