@@ -22,19 +22,19 @@ public:
 	        ans++;
 	        while(sz--){
 	            pair<int, int> pr = q.front();
-    	        q.pop();
-    	       
-    	        for(int i=0; i<8; i++){
-    	            int x = pr.first + dir[i][0]; int y = pr.second + dir[i][1];
-    	            if(x>=0 and y>=0 and x<n and y<n and vis[x][y] == 0){
-    	                vis[x][y] = 1;
-    	                q.push({x, y});
-    	                
-    	                if(x==tgp[0]-1 and y==tgp[1]-1){
-    	                    return ans;
-    	                }
-    	            }
-    	        }
+				q.pop();
+
+				for(int i=0; i<8; i++){
+					int x = pr.first + dir[i][0]; int y = pr.second + dir[i][1];
+					if(x>=0 and y>=0 and x<n and y<n and vis[x][y] == 0){
+					vis[x][y] = 1;
+					q.push({x, y});
+
+					if(x==tgp[0]-1 and y==tgp[1]-1){
+						return ans;
+					}
+					}
+				}
 	        }
 	    }
 	    
