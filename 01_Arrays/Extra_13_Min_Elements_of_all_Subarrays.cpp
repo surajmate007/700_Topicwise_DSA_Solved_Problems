@@ -11,6 +11,60 @@
 // Finally, f(i) = (left[i]) * (right[i]), where f[i] equals total number of subarrays in which A[i] is minimum.x
 // Below is the implementation of above approach 
 
+// simple approach using dq:
+// solved in coding ninjas contest.
+
+#include <bits/stdc++.h> 
+long long int superScore(int n, vector<int> arr) {
+    vector<int> left(n), right(n);
+    deque<int> dq;
+    
+    for(int i=0; i<n; i++){
+        if(dq.empty()){
+            left[i] = i+1;
+        }
+        else{
+            while(!dq.empty() and arr[dq.back()] > arr[i]){
+                dq.pop_back();
+            }
+            if(dq.empty()){
+                left[i] = i+1;
+            }
+            else{
+                left[i] = i-dq.back();
+            }
+        }
+        dq.push_back(i);
+    }
+    
+    dq.clear();
+    
+    for(int i=n-1; i>=0; i--){
+        if(dq.empty()){
+            right[i] = n-i;
+        }
+        else{
+            while(!dq.empty() and arr[dq.back()] >= arr[i]){
+                dq.pop_back();
+            }
+            if(dq.empty()){
+                right[i] = n-i;
+            }
+            else{
+                right[i] = dq.back()-i;
+            }
+        }
+        dq.push_back(i);
+    }
+    
+    long long ans = 0;
+    for(int i=0; i<n; i++){
+        ans += (1ll * arr[i] * 1ll * arr[i] * 1ll * left[i] * 1ll * right[i]);
+    }
+    
+    return ans;
+}
+
 
 // CPP implementation of above approach
 #include <bits/stdc++.h>
@@ -75,5 +129,3 @@ int main()
 
 	return 0;
 }
-// This code is written by Sanjit_Prasad
-
