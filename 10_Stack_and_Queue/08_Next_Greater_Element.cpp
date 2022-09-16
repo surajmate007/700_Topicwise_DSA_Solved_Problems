@@ -30,3 +30,55 @@ class Solution{
         return ans;
     }
 };
+
+
+
+// Sinple code using dqueue for next greater element:
+
+#include <bits/stdc++.h> 
+
+vector<int> nextGreater(vector<int> &arr, int n) {
+    vector<int> ans(n); ans[n-1] = -1;
+    deque<int> dq; dq.push_back(arr[n-1]);
+    for(int i=n-2; i>=0; i--){
+        while(!dq.empty() and dq.back() <= arr[i]){
+            dq.pop_back();
+        }
+        if(dq.empty()){
+            ans[i] = -1;
+        }
+        else{
+            ans[i] = dq.back();
+        }
+        
+        dq.push_back(arr[i]);
+    }
+    
+    return ans;
+}
+
+
+// simple code using dequeue for next samller element:
+
+
+#include<bits/stdc++.h>
+
+vector<int> nextSmallerElement(vector<int> &arr, int n){
+    vector<int> ans(n);
+    ans[n-1] = -1; 
+    deque<int> dq; dq.push_back(arr[n-1]);
+    for(int i=n-2; i>=0; i--){
+        while(!dq.empty() and dq.back() >= arr[i]){
+            dq.pop_back();
+        }
+        if(dq.empty()){
+            ans[i] = -1;
+        }
+        else{
+            ans[i] = dq.back();
+        }
+        dq.push_back(arr[i]);
+    }
+    
+    return ans;
+}
