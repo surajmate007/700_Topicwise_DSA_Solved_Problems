@@ -1,3 +1,87 @@
+// Egg Dropping with bianry seacrh approach:
+
+
+#include <iostream>
+#include <climits>
+#include <vector>
+#include <cstring>
+using namespace std;
+int memo[101][10001];
+
+int eggDrop(int eggs, int floors)
+{
+    // If 'FLOORS' = 0 no drop needed.
+    // If FL'OORS = 1 only 1 drop needed.
+    if (floors <= 1)
+        return floors;
+
+    // If 'EGGS' = 1, gradually drop the egg from 1st floor to all the way up.
+    if (eggs == 1)
+        return floors;
+
+    // If answer for given number of eggs and floors, return it.
+    if (memo[eggs][floors] != -1)
+        return memo[eggs][floors];
+
+    // 'ANS' returns the final answer for current number of eggs and floors.
+    int ans = INT_MAX, movesForUnbrokenEgss = 0, movesForBrokenEgss = 0;
+
+    // 'LOW' and 'HIGH' pointers for binary search.
+    int low = 1, high = floors;
+
+    while (low < high)
+    {
+
+        // Computing mid floor to drop the egg from the mid floor.
+        int mid = low + (high - low) / 2;
+
+        // 'MOVES_FOR_BROKEN_EGGS' to store answer if egg is broken after falling from 'MID' floor.
+        if (memo[eggs - 1][mid - 1] != -1)
+            movesForBrokenEgss = memo[eggs - 1][mid - 1];
+        else
+            movesForBrokenEgss = eggDrop(eggs - 1, mid - 1);
+
+        // 'MOVES_FOR_UNBROKEN_EGGS' to store answer if egg is not broken after falling from 'MID' floor.
+        if (memo[eggs][floors - mid] != -1)
+            movesForUnbrokenEgss = memo[eggs][floors - mid];
+        else
+            movesForUnbrokenEgss = eggDrop(eggs, floors - mid);
+
+        // Move the binary search towards the case where number of egg drops are more.
+        if (movesForBrokenEgss > movesForUnbrokenEgss)
+            high = mid;
+        else
+            low = mid + 1;
+
+        // Maximum number of egg drops for both the case.
+        // Add 1 to represent the current egg drop.
+        int temp = 1 + max(movesForBrokenEgss, movesForUnbrokenEgss);
+
+        // Choose minimum of all the worst cases.
+        ans = min(ans, temp);
+    }
+
+    // Storing the output for current numbers of eggs and floors.
+    return memo[eggs][floors] = ans;
+}
+
+int main()
+{
+    int eggs, floors;
+    cout << "Enter Eggs: ";
+    cin >> eggs;
+    cout << "Enter Floors: ";
+    cin >> floors;
+    
+    // Initialize memo array with value -1.
+    memset(memo, -1, sizeof(memo));
+
+    cout << "Minimum number of moves required: " << eggDrop(eggs, floors);
+}
+
+
+
+
 // Simple Recursive Approach (gut giving TLE):
 // Here n-- no. of eggs and k -- no. of floors.
 // when no of eggs is only 1 then we will start from ground floor and try every single floor by droping the egg. Hence attempts required will be k.
