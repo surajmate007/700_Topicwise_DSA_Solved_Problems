@@ -38,7 +38,7 @@ public:
 };
 
 
-// Modified the solution to return only true nas false:
+// Modified the solution to return only true or false:
 
 
 class Solution {
