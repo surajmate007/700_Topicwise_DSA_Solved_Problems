@@ -19,7 +19,7 @@ public:
             return;
         }
         
-        for(int i=n; i>=0; i--){
+        for(int i=n-1; i>=0; i--){
             if(nums[i] > nums[idx1]){
                 idx2 = i;
                 break;
