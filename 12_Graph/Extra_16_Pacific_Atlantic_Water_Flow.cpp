@@ -24,25 +24,6 @@ public:
         }
     }
     
-    void getAns1(vector<vector<int>>& hig, vector<vector<int>>& ocean, int i, int j){
-        int n = hig.size(); int m = hig[0].size();
-        ocean[i][j] = 1;
-        queue<pair<int, int>> q;
-        q.push({i, j});
-        
-        while(!q.empty()){
-            auto e = q.front(); q.pop();
-            int val = hig[e.first][e.second];
-            for(int i=0; i<4; i++){
-                int x = e.first + dir[i]; int y = e.second + dir[i+1];
-                if(x>=0 and y>=0 and x<n and y<m and hig[x][y] <= val and ocean[x][y] == 0){
-                    q.push({x, y});
-                    ocean[x][y] = 1;
-                }
-            }
-        }
-    }
-    
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
         int n = heights.size(); int m = heights[0].size();
         
