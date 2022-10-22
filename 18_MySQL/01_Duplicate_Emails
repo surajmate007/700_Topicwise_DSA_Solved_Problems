@@ -1,0 +1,6 @@
+// https://leetcode.com/problems/duplicate-emails/description/
+
+# Write your MySQL query statement below
+SELECT distinct a.email as Email
+FROM person a, person b
+Where a.email = b.email AND a.id != b.id
