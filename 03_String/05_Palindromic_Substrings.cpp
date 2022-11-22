@@ -1,4 +1,4 @@
-// siple code but I am not able top write the recursion for this code. 😢🥺
+// siple code but I am not able to write the recursion for this code. 😢🥺
 
 class Solution {
 public:
