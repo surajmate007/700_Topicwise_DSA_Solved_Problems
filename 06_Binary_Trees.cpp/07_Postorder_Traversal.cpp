@@ -1,4 +1,4 @@
-
+// Preorder snd postorder are exactly same only the difference is in postorder we reverse the array at last. 
 
 // Recursive function to perform postorder traversal on the tree
 void postorder(Node* root){
