@@ -1,4 +1,36 @@
 // problem link : https://leetcode.com/problems/combination-sum/ 
+// Both the solutions follow same approach. But the first one is more intuitive.
+class Solution {
+public:
+    vector<vector<int>> ans;
+    void getAns(vector<int>& vec, vector<int>& temp, int idx, int n, int target){
+        if(target == 0){
+            ans.push_back(temp);
+            return;
+        }
+        if(idx >= n){
+            return;
+        }
+        
+        if(vec[idx] <= target){
+            temp.push_back(vec[idx]);
+            getAns(vec, temp, idx, n, target-vec[idx]);
+            temp.pop_back();
+        }
+        getAns(vec, temp, idx+1, n, target);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        ans.clear();
+        sort(candidates.begin(), candidates.end());
+        int n = candidates.size();
+        vector<int> temp;
+        getAns(candidates, temp, 0, n, target);
+        return ans;
+    }
+};
+
+
 
 class Solution {
 public:
