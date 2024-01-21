@@ -23,6 +23,35 @@ int minop(vector<int> a, int i, int j, int x, int ans){
 // subarray and then we will try to find the maximum window size having this sum.
 // After finding the max window sixe we will subtract this window size from the length of the array.
 
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int x) {
+        int n = nums.size();
+        long long tsum = 0;
+        for(int i=0; i<n; i++){
+            tsum += (long long)nums[i];
+        }
+        long long tar = tsum - (long long) x;
+        int ans = INT_MIN;
+
+        int p=0; int q=0; long long sum = 0;
+        while(q < n){
+            sum += (long long)nums[q];
+            q++;
+            while(p<q and sum > tar){
+                sum -= (long long)nums[p];
+                p++;
+            }
+            if(sum == tar){
+                ans = max(ans, q-p);
+            }
+        }
+        return ans == INT_MIN ? -1 : n-ans;
+    }
+};
+
+
+// same approach
 
 class Solution {
 public:
