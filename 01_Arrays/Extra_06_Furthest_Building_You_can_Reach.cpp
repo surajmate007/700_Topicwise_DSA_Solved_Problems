@@ -1,4 +1,4 @@
-// solution using pq.
+// solution using min heap.
 
 class Solution {
 public:
@@ -22,6 +22,38 @@ public:
         return n-1;  
     }
 };
+
+// solution using max heap:
+
+class Solution {
+public:
+    int furthestBuilding(vector<int>& heights, int bricks, int ladders) {
+        int n = heights.size(); int ans = 0; int bricksRequired = 0;
+        priority_queue<int> pq;
+
+        for(int i=1; i<n; i++){
+            int diff = heights[i] - heights[i-1];
+            if(diff <= 0) continue;
+            bricksRequired += diff;
+            pq.push(diff);
+            
+            if(bricksRequired > bricks){
+                if(ladders > 0){
+                    ladders--;
+                    if(!pq.empty()){
+                        int maxBricksUsed = pq.top(); pq.pop();
+                        bricksRequired -= maxBricksUsed;
+                    }
+                }
+                else{
+                    return i-1;
+                }
+            }
+        }
+        return n-1;
+    }
+};
+
 
 // Uisng backtracking but giving TLE.
 
