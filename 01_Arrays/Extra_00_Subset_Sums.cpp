@@ -19,3 +19,28 @@ void getans(vector<int>& ans, vector<int> arr, int idx, int n, int& sum){
         getans(ans, arr, 0, N, sum);
         return ans;
     }
+
+
+// In this solution we are telling whether the sum is possible in the given array.
+class Solution{   
+public:
+    bool getAns(vector<int>& arr, int idx, int n, int sum, vector<vector<int>>& dp){
+        if(sum == 0){
+            return true;
+        }
+        if(idx >= n or sum < 0){
+            return false;
+        }
+        if(dp[idx][sum] != -1){
+            return dp[idx][sum];
+        }
+        
+        return dp[idx][sum] = getAns(arr, idx+1, n, sum-arr[idx], dp) or getAns(arr, idx+1, n, sum, dp);
+    }
+    
+    bool isSubsetSum(vector<int>arr, int sum){
+        int n = arr.size();
+        vector<vector<int>> dp(n+1, vector<int>(sum+1, -1));
+        return getAns(arr, 0, n, sum, dp);
+    }
+};
