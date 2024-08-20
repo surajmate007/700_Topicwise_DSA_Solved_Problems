@@ -1,5 +1,39 @@
-// good solution from youtube video.
+// Easy to understand recursive code:
 
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution{
+public:
+    bool getAns(unordered_map<string, int>& mp, string& s, int n, int idx, int last){
+        if(idx > n){
+            if(last == n) return 1;
+            return 0;
+        }
+        
+        string str = s.substr(last, idx-last);
+        bool ans1 = 0; bool ans2 = 0;
+        if(mp.find(str) != mp.end()){
+            ans1 = getAns(mp, s, n, idx+1, idx);
+            if(ans1) return ans1;
+        }
+        ans2 = getAns(mp, s, n, idx+1, last);
+        if(ans2) return ans2;
+        
+        return 0;
+    }
+    
+    int wordBreak(int n, string s, vector<string> &dictionary) {
+        unordered_map<string, int> mp;
+        for(auto e : dictionary) mp[e]++;
+        int m = s.length();
+        int ans = getAns(mp, s, m, 0, 0);
+        return ans;
+    }
+};
+
+
+// another dp solution
 class Solution{
 public:
     
