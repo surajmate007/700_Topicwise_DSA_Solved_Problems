@@ -1,3 +1,4 @@
+// After every iteration we select the smallest element so far and put it at the front of the array.
 // TC = O(n2)
 // SC = O(1)
 
