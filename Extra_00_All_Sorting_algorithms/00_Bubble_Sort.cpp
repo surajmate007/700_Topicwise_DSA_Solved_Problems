@@ -1,3 +1,4 @@
+// After every iteration we select the biggest element encountered so far and put it at the last if the array.
 // TC = O(n2)
 // SC = O(1)
 
